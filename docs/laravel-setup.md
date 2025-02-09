@@ -3,17 +3,17 @@
 以下の流れで Laravel の開発環境を作成します。
 
 1.ディレクトリの作成
-    →[laravel-setup.md](./docs/laravel-setup.md)を参照
+    →[laravel-setup.md](laravel-setup.md)を参照
 
 2.Docker-compose.yml の作成
 3.Nginx の設定
 4.PHP の設定
 5.MySQL の設定
 6.phpMyAdmin の設定
-    →[docker-setup.md](./docs/docker-setup.md)を参照
+    →[docker-setup.md](docker-setup.md)を参照
 
 7.docker-compose コマンドでビルド
-    →[laravel-setup.md](./docs/laravel-setup.md)を参照
+    →[laravel-setup.md](laravel-setup.md)を参照
 
 
 ## 1. ディレクトリの作成
