@@ -99,7 +99,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 WORKDIR /var/www
 
 
-# 次に、php.iniの設定をします
+## 次に、php.iniの設定をします
 
 docker/php以下のphp.iniファイルにコピペします。
 
@@ -152,9 +152,9 @@ phpMyAdmin は、ブラウザからデータベースを操作をすることが
 これで、Laravelの開発環境がDocker上で立ち上がります。
 
 
-# 次にLaravelプロジェクトの作成をします
+# 次に、Laravelプロジェクトの作成をします
 
-詳細な手順については、[laravel-setup.md](./docs/laravel-setup.md)を参照してください。
+詳細な手順については、[laravel-setup.md](laravel-setup.md)を参照してください。
 
 
 

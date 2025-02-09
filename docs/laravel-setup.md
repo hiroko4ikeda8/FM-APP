@@ -207,4 +207,4 @@ $ php artisan config:clear
 
 # 次に、GitHubでリポジトリ作成をします
 
-詳細な手順については、[git-setup.md](./docs/git-setup.md)を参照してください。
+詳細な手順については、[git-setup.md](git-setup.md)を参照してください。
