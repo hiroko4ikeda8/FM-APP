@@ -70,3 +70,11 @@ Laravelプロジェクトのための基本的な `.gitignore` 設定を行い�
 
 以上で開発環境のセットアップは完了です。
 
+
+![ER Diagram](docs/FM-APP.png)
+
+
+
+
+
+
