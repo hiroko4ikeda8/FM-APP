@@ -42,7 +42,7 @@ FM-APP
 
 # 2. Docker環境をセットアップします
 
-詳細な手順については、[docker-setup.md](./docs/docker-setup.md)を参照してください。
+詳細な手順については、[docker-setup.md](docker-setup.md)を参照してください。
 
 
 # 3. プロジェクト作成前に、Laravel に必要なパッケージをインストールします
