@@ -2,17 +2,17 @@
 
 以下の流れで Laravel の開発環境を作成します。
 
-1.ディレクトリの作成
+-1.ディレクトリの作成
     →[laravel-setup.md](laravel-setup.md)を参照
 
-2.Docker-compose.yml の作成
-3.Nginx の設定
-4.PHP の設定
-5.MySQL の設定
-6.phpMyAdmin の設定
+-2.Docker-compose.yml の作成
+-3.Nginx の設定
+-4.PHP の設定
+-5.MySQL の設定
+-6.phpMyAdmin の設定
     →[docker-setup.md](docker-setup.md)を参照
 
-7.docker-compose コマンドでビルド
+-7.docker-compose コマンドでビルド
     →[laravel-setup.md](laravel-setup.md)を参照
 
 
@@ -37,7 +37,7 @@ FM-APP
 └── src
 ```
 
-※data、srcはディレクトリ、Dockerfileはファイルとして作成
+**※**data、srcはディレクトリ、Dockerfileはファイルとして作成
 
 ディレクトリとファイル作成ができたら VSCodeを開いて編集していきます。
 
@@ -74,14 +74,12 @@ $ docker-compose exec php bash
 ログインができたら、composerがインストールできているかを以下のコマンドで確かめてみましょう。
 
 input
-
 ```PHPコンテナ内
 
 $ composer -v
 ```
 
 output
-
 ```PHPコンテナ内 
 出力結果
 
@@ -100,7 +98,6 @@ Laravel を使用するには、composerコマンドを使って Laravelのプ�
 以下のコマンドでプロジェクトを作成します。
 
 input
-
 ```phpコンテナ内
 
 $ composer create-project "laravel/laravel=8.*" . --prefer-dist
@@ -108,7 +105,6 @@ $ ls
 ```
 
 output
-
 ```出力結果
 
 README.md  app  artisan  bootstrap  composer.json  composer.lock  config  database  package.json  phpunit.xml  public  resources  routes  server.php  storage  tests  vendor  webpack.mix.js
@@ -124,7 +120,7 @@ lsコマンドでディレクトリ内を確認すると、ディレクトリや
 
 http://localhost/
 
-※アクセスした際に、Permission deniedというエラーが発生した場合は、~/coachtech/laravel/FM-APPディレクトリで以下のコマンドを実行してください。
+**※**アクセスした際に、Permission deniedというエラーが発生した場合は、~/coachtech/laravel/FM-APPディレクトリで以下のコマンドを実行してください。
 
 ```
 $ sudo chmod -R 777 src/*
