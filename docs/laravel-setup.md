@@ -22,6 +22,7 @@ laravelディレクトリ以下に、FM-APPを作成
 
 ディレクトリ構成
 
+```
 FM-APP
 ├── docker
 │   ├── mysql
@@ -34,6 +35,7 @@ FM-APP
 │       └── php.ini
 ├── docker-compose.yml
 └── src
+```
 
 ※data、srcはディレクトリ、Dockerfileはファイルとして作成
 
