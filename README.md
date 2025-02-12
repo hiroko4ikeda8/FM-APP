@@ -72,7 +72,11 @@ Laravelプロジェクトのための基本的な `.gitignore` 設定を行い�
 
 詳細な手順については、[.env-setup.md](./docs/.env-setup.md)を参照してください。
 
-## 8. 開発環境の確認
+## 8. fortifyの設定
+
+詳細な手順については、[fortify_installation.md](./docs/fortify_installation.md)を参照してください。
+
+## 9. 開発環境の確認
 セットアップが完了したら、Laravelのサーバーを起動し、正しく動作するか確認します。
 
 ブラウザで `http://localhost` にアクセスし、Laravelの初期画面が表示されれば成功です。
