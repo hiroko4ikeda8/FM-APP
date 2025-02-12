@@ -164,5 +164,7 @@ phpMyAdmin は、ブラウザからデータベースを操作をすることが
 
 詳細な手順については、[laravel-setup.md](laravel-setup.md)を参照してください。
 
+READMEに戻る # [README.md](../README.md)
+
 
 
