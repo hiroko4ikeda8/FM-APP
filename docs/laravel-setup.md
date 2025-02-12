@@ -213,5 +213,4 @@ $ php artisan config:clear
 
 詳細な手順については、[git-setup.md](git-setup.md)を参照してください。
 
-READMEに戻る # [README.md](../README.md)
-
+[README.md](../README.md)戻る
