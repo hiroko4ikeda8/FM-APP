@@ -37,7 +37,7 @@ FM-APP
 └── src
 ```
 
-**※**data、srcはディレクトリ、Dockerfileはファイルとして作成
+-**※**data、srcはディレクトリ、Dockerfileはファイルとして作成
 
 ディレクトリとファイル作成ができたら VSCodeを開いて編集していきます。
 
@@ -120,7 +120,7 @@ lsコマンドでディレクトリ内を確認すると、ディレクトリや
 
 http://localhost/
 
-**※**アクセスした際に、Permission deniedというエラーが発生した場合は、~/coachtech/laravel/FM-APPディレクトリで以下のコマンドを実行してください。
+-**※**アクセスした際に、Permission deniedというエラーが発生した場合は、~/coachtech/laravel/FM-APPディレクトリで以下のコマンドを実行してください。
 
 ```
 $ sudo chmod -R 777 src/*
