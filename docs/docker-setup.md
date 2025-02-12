@@ -4,7 +4,7 @@
 
 以下のコードをdocker-compose.ymlにコピペしてください。
 
-
+```
 version: '3.8'
 
 services:
@@ -47,6 +47,7 @@ services:
             - mysql
         ports:
             - 8080:80
+```
 
 
 ## 2.Nginx の設定
@@ -54,7 +55,7 @@ services:
 Nginx は、ローカルサーバの設定になります
 以下のコードをdocker/nginx/ディレクトリ以下に作成したdefault.confにコピペしてください。
 
-
+```
 server {
     listen 80;
     index index.php index.html;
@@ -75,6 +76,7 @@ server {
         fastcgi_param PATH_INFO $fastcgi_path_info;
     }
 }
+```
 
 
 ## 3. PHP の設定
@@ -83,7 +85,7 @@ Laravelの開発環境をDockerで構築するため、以下のようにDockerf
 以下のコードを./docker/php以下に作成された Dockerfile を使って設定します。
 コピペしてください。
 
-
+```
 FROM php:7.4.9-fpm
 
 COPY php.ini /usr/local/etc/php/
@@ -97,48 +99,54 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && composer self-update
 
 WORKDIR /var/www
+```
 
 
 ## 次に、php.iniの設定をします
 
 docker/php以下のphp.iniファイルにコピペします。
 
-
+```
 date.timezone = "Asia/Tokyo"
 
 [mbstring]
 mbstring.internal_encoding = "UTF-8"
 mbstring.language = "Japanese"
-
+```
 
 ## 4. MySQL の設定
 
 docker/mysqlディレクトリ以下にある、volumesでマウントするためのmy.cnfにコピペしてください。
 
-
+```
 [mysqld]
 character-set-server = utf8mb4
 
 collation-server = utf8mb4_unicode_ci
 
 default-time-zone = 'Asia/Tokyo'
+```
 
 ※docker/mysqlディレクトリ以下にあるdataディレクトリは、必ず「カラ」にしておきます。
 「カラ」にしておかないと、docker-compose 起動時にデータベースの作成に失敗する可能性があります。
+
 
 ## 5. docker-compose コマンドでビルド
 
 開発環境を構築しますので、以下のコマンドを入力してください。
 
-
+```
 $ docker-compose up -d --build
+```
 
 実行が終わったら、「Docker Desktop for windows」を確認しましょう。
 FM-APPコンテナが作成されていれば成功です。
 
 コンテナが正しく起動しているか確認するには、以下のコマンドを実行します。
 
+```
 $ docker ps
+```
 
 
 ## 6. phpMyAdmin の設定
