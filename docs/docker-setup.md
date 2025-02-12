@@ -127,7 +127,7 @@ collation-server = utf8mb4_unicode_ci
 default-time-zone = 'Asia/Tokyo'
 ```
 
-**※**docker/mysqlディレクトリ以下にあるdataディレクトリは、必ず「カラ」にしておきます。
+**※** docker/mysqlディレクトリ以下にあるdataディレクトリは、必ず「カラ」にしておきます。
 「カラ」にしておかないと、docker-compose 起動時にデータベースの作成に失敗する可能性があります。
 
 
