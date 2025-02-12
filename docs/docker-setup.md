@@ -166,5 +166,3 @@ phpMyAdmin は、ブラウザからデータベースを操作をすることが
 
 READMEに戻る # [README.md](../README.md)
 
-
-

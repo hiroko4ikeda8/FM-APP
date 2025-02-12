@@ -72,11 +72,31 @@ Laravelプロジェクトのための基本的な `.gitignore` 設定を行い�
 
 詳細な手順については、[.env-setup.md](./docs/.env-setup.md)を参照してください。
 
-## 8. fortifyの設定
+## 8. Fortifyの設定
 
-詳細な手順については、[fortify_installation.md](./docs/fortify_installation.md)を参照してください。
+詳細な手順については、[fortify-setup.md](./docs/fortify-setup.md)を参照してください。
 
-## 9. 開発環境の確認
+## 9. マイグレーションの実行
+
+**※** マイグレーションを実行する前に、`.env` ファイルのデータベース設定を確認してください。
+
+    詳細な手順については、[.env-setup.md](./docs/.env-setup.md)を参照してください。
+
+
+データベースのテーブルを作成するために、以下のコマンドを実行してください。
+
+```bash
+php artisan migrate
+```
+
+データベースに初期データを投入するために、以下のコマンドを実行します
+
+```bash
+php artisan db:seed
+```
+
+
+## 10. 開発環境の確認
 セットアップが完了したら、Laravelのサーバーを起動し、正しく動作するか確認します。
 
 ブラウザで `http://localhost` にアクセスし、Laravelの初期画面が表示されれば成功です。
@@ -85,9 +105,3 @@ Laravelプロジェクトのための基本的な `.gitignore` 設定を行い�
 
 
 ![ER Diagram](docs/FM-APP.png)
-
-
-
-
-
-
