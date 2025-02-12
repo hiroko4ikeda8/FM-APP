@@ -11,6 +11,15 @@
 - Dockerのインストール
 - WSLのインストール
 
+## 環境情報
+- **OS**: Windows 11  
+- **WSL**: WSL2  
+- **Docker**: 27.5.1  
+- **Docker Compose**: 2.32.4-desktop.1 
+- **PHP**: 7.4.9 
+- **Composer**: 2.2.6  
+- **MySQL**: 8.0.26  
+- **Laravel Framework**: 8.83.29
 
 ## 2. 開発用ディレクトリの作成
 プロジェクトの作業ディレクトリを作成し、そこへ移動します。
