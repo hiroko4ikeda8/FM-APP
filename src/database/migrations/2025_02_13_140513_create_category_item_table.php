@@ -19,7 +19,6 @@ class CreateCategoryItemTable extends Migration
             $table->bigInteger('category_id')->unsigned(); // category_id カラム (bigint)
             $table->timestamps(); // created_at, updated_at カラム (timestamp)
 
-            $table->primary('id'); // PRIMARY KEY の設定
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade'); // 外部キー制約 (items)
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // 外部キー制約 (categories)
         });

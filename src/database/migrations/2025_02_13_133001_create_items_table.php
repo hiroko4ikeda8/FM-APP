@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // bigint, FOREIGN KEY
             $table->string('name')->unique(); // string, UNIQUE, NOT NULL
             $table->unsignedInteger('price'); // unsigned integer, NOT NULL
+            $table->string('brand_name'); // unsigned integer, NOT NULL, メーカー名含む
             $table->string('description', 255); // varchar(255), NOT NULL
             $table->enum('condition', ['良好', '目立った傷や汚れ無し', 'やや傷や汚れあり', '状態が悪い'])->notNull(); // enum, NOT NULL
             $table->timestamps(); // created_at, updated_at

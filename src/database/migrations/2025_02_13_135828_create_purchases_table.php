@@ -22,7 +22,6 @@ class CreatePurchasesTable extends Migration
             $table->integer('total_price'); // total_price カラム (integer)
             $table->timestamps(); // created_at, updated_at カラム (timestamp)
 
-            $table->primary('id'); // PRIMARY KEY の設定
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // 外部キー制約 (users)
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade'); // 外部キー制約 (items)
             $table->foreign('shipping_address_id')->references('id')->on('shipping_addresses')->onDelete('cascade'); // 外部キー制約 (shipping_addresses)
