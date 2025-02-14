@@ -18,7 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->unique(); // name カラム (string) UNIQUE
             $table->timestamps(); // created_at, updated_at カラム (timestamp)
 
-            $table->primary('id'); // PRIMARY KEY の設定
             $table->index('name'); // name カラムにインデックスを追加
         });
     }

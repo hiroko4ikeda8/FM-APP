@@ -23,7 +23,6 @@ class CreateProfilesTable extends Migration
             $table->string('building_name')->nullable(); // building_name カラム (string) なしでも可 (nullable)
             $table->timestamps(); // created_at, updated_at カラム (timestamp)
 
-            $table->primary('id'); // PRIMARY KEY の設定
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // 外部キー制約 (users)
         });
     }
