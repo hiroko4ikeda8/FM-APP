@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Item;
 use App\Models\Like;
 
 class LikesTableSeeder extends Seeder
@@ -14,6 +17,17 @@ class LikesTableSeeder extends Seeder
      */
     public function run()
     {
-        Like::factory()->count(15)->create();  // いいねデータを15件作成
+        $likes = [];
+
+        for ($i = 0; $i < 20; $i++) { // 20件のいいねデータを作成
+            $userId = User::inRandomOrder()->first()->id;
+            $itemId = Item::inRandomOrder()->first()->id;
+
+            // 同じ組み合わせが存在しない場合にのみデータを挿入
+            Like::firstOrCreate(
+                ['user_id' => $userId, 'item_id' => $itemId],
+                ['created_at' => now(), 'updated_at' => now()]
+            );
+        }
     }
 }
