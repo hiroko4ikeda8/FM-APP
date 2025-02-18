@@ -13,10 +13,11 @@ class CommentFactory extends Factory
 
     public function definition()
     {
+
         return [
             'user_id' => User::inRandomOrder()->first()->id,  // コメントしたユーザー
             'item_id' => Item::inRandomOrder()->first()->id,  // 商品
-            'content' => $this->faker->sentence,  // コメント内容
+            'content' => $this->faker->realText(255),  // コメント内容
             'created_at' => now(),
             'updated_at' => now(),
         ];
