@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             CategoriesTableSeeder::class,
             ItemsTableSeeder::class,
-            PurchasesTableSeeder::class,
+            ShippingAddressesTableSeeder::class,
             CommentsTableSeeder::class,
             LikesTableSeeder::class,
-            ShippingAddressesTableSeeder::class,
+            PurchasesTableSeeder::class,
         ]);
     }
 }

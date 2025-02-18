@@ -14,6 +14,6 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        Comment::factory()->count(30)->create();  // コメントを30件作成
+        Comment::factory()->count(20)->create();  // コメントを20件作成
     }
 }
