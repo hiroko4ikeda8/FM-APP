@@ -9,8 +9,21 @@ class Purchase extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['payment_method', 'total_price'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
+
+    public function shippingAddress()
+    {
+        return $this->belongsTo(ShippingAddress::class);
+    }
+
 }

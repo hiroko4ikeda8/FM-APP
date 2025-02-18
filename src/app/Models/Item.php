@@ -12,7 +12,7 @@ class Item extends Model
     protected $fillable = ['name', 'price', 'desscription', 'condition'];
 
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -40,7 +40,5 @@ class Item extends Model
     {
         return $this->hasMany(Like::class);
     }
-
-
 
 }

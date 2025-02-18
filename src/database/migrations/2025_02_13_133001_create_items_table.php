@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id(); // bigint, PRIMARY KEY, AUTO_INCREMENT
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // bigint, FOREIGN KEY
-            $table->string('name')->unique(); // string, UNIQUE, NOT NULL
+            $table->string('name'); // ここで unique() を外す
             $table->unsignedInteger('price'); // unsigned integer, NOT NULL
             $table->string('brand_name'); // unsigned integer, NOT NULL, メーカー名含む
             $table->string('description', 255); // varchar(255), NOT NULL

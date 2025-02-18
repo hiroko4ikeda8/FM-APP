@@ -2,18 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use App\Models\Category;
 use App\Models\Item;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class ItemsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        Item::factory()->count(20)->create();  // 商品を20件作成
+        Item::factory(15)->create()->each(function ($item) {
+            // ランダムに1〜3個のカテゴリを取得
+            $categories = Category::inRandomOrder()->limit(rand(1, 3))->pluck('id');
+
+            // 中間テーブルに保存
+            $item->categories()->attach($categories);
+
+        });
     }
 }
