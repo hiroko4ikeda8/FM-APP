@@ -66,7 +66,7 @@ git push -u origin main
 ## 6. .gitignoreの設定
 Laravelプロジェクトのための基本的な `.gitignore` 設定を行います。
 
-詳細な手順については、[gitignore.example-setup.md](./gitignore.example-setup.md)を参照してください。
+詳細な手順については、[gitignore.example-setup.md](./docs/gitignore.example-setup.md)を参照してください。
 
 ## 7. .envの設定
 
