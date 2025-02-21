@@ -22,7 +22,7 @@
 
 これらが設定されていない場合、`.gitignore` に追加して、GitHubに不要なファイルがアップロードされないようにしましょう。
 
-[.gitignore-setup.md](./docs/.gitignore-setup.md) 確認と設定はこちらになります
+[.gitignore-setup.md](.gitignore-setup.md) 確認と設定はこちらになります
 
 ## ステップ1：`laravel/ui` パッケージのインストール
 まず、`laravel/ui` パッケージをインストールして、Bootstrapのスキャフォールディングを有効にします。
