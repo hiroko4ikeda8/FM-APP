@@ -94,3 +94,4 @@ Bootstrapのクラスを利用してレスポンシブデザインを適用す�
 この手順に従って、Laravel 8プロジェクトにBootstrapを統合し、レスポンシブデザインを効率的に作成できます。さらにカスタマイズや使用方法については、[Bootstrapの公式ドキュメント](https://getbootstrap.com/)を参照してください。
 
 ---
+[README.md](../README.md)戻る
