@@ -106,6 +106,6 @@ git push origin main
 
 ## 次に、.env設定をします
 
-詳細な手順については、[.env-setup.md](.env-setup.md)を参照してください。
+詳細な手順については、[env.example-setup.md](env.example-setup.md)を参照してください。
 
 [README.md](../README.md)戻る

@@ -75,6 +75,6 @@ GitHubのリポジトリページを開き、コードが正しくアップロ�
 
 # 次に、.gitignoreの設定をします
 
-詳細な手順については、[.gitignore-setup.md](.gitignore-setup.md)を参照してください。
+詳細な手順については、[gitignore.example-setup.md](gitignore.example-setup.md)を参照してください。
 
 [README.md](../README.md)戻る

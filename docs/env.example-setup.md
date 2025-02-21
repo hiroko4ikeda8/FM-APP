@@ -18,11 +18,11 @@ mysqlの設定は、docker-compose.ymlに記載されています、確認して
 
 ```env
 DB_CONNECTION=mysql 
-DB_HOST=mysql  # Dockerコンテナ内のサービス名に合わせる 
+DB_HOST=  # Dockerコンテナ内のサービス名に合わせる 
 DB_PORT=3306 
-DB_DATABASE=laravel_db  # 必要に応じて変更 
-DB_USERNAME=laravel_user  # 必要に応じて変更
-DB_PASSWORD=laravel_pass  # 必要に応じて変更
+DB_DATABASE=  # 必要に応じて変更 
+DB_USERNAME=  # 必要に応じて変更
+DB_PASSWORD=  # 必要に応じて変更
 ```
 
 **※** .envファイル作成で保存ができない場合があるので、その時は以下のコマンド実行し、保存してください。
