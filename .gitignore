@@ -1,8 +1,33 @@
 docker/mysql/data/*
 
-/node_modules
+# Node.js dependencies
+/node_modules/
+
+# Laravel Composer dependencies
+/vendor/
+
+# PHP environment variables
+*.env
+
+# SSH keys and secrets
+*.pem
+
+# Public assets (compiled CSS, JS)
 /public/css
 /public/js
 /public/mix-manifest.json
+
+# Database and logs
+/docker/mysql/data/*
+/storage/logs/
+/storage/framework/cache/
+
+# IDE settings
+/.vscode/
+/.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
 
 !.gitkeep

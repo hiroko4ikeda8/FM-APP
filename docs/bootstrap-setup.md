@@ -11,6 +11,19 @@
 - Laravel 8 がインストール済み
 - Node.js と npm がインストール済み
 
+### **GitIgnoreの確認**
+プロジェクトの `.gitignore` ファイルに、以下の項目が正しく設定されていることを確認してください。設定されていない場合は、追加しましょう。
+
+- SSHキーや機密ファイル (`*.pem`)
+- Node.jsの依存関係 (`/node_modules/`)
+- LaravelのComposer依存関係 (`/vendor/`)
+- 環境変数ファイル (`*.env`)
+- 公開されたCSS、JSファイル (`/public/css`、`/public/js`)
+
+これらが設定されていない場合、`.gitignore` に追加して、GitHubに不要なファイルがアップロードされないようにしましょう。
+
+[.gitignore-setup.md](./docs/.gitignore-setup.md) 確認と設定はこちらになります
+
 ## ステップ1：`laravel/ui` パッケージのインストール
 まず、`laravel/ui` パッケージをインストールして、Bootstrapのスキャフォールディングを有効にします。
 
