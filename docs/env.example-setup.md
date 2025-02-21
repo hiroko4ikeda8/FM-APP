@@ -50,6 +50,6 @@ $ php artisan key:generate
 
 ## 次に、fortifyの設定をします
 
-詳細な手順については、[fortify-setup.md](./docs/fortify-setup.md)を参照してください。
+詳細な手順については、[fortify-setup.md](fortify-setup.md)を参照してください。
 
 [README.md](../README.md)戻る
