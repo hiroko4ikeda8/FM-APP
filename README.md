@@ -98,7 +98,10 @@ php artisan db:seed
 
 ブラウザで `http://localhost` にアクセスし、Laravelの初期画面が表示されれば成功です。
 
-以上で開発環境のセットアップは完了です。
 
+## 11. Bootstrapの設定
+Bootstrapを使ってレスポンシブデザインを効率化するためのセットアップ手順については、[bootstrap-setup.md](./docs/bootstrap-setup.md) を参照してください。
+
+以上で開発環境のセットアップは完了です。
 
 ![ER Diagram](docs/FM-APP.png)
