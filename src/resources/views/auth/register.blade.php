@@ -1,7 +1,7 @@
 @extends('layouts.auth_layout')
 
-@section('title', 'ログイン')
+@section('title', '会員登録')
 
 @section('content')
-<p>ここにログインフォームを入れる</p>
+<p>ここに会員登録フォームを入れる</p>
 @endsection

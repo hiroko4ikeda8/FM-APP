@@ -7,6 +7,7 @@
     <title>フリマアプリ - @yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @stack('styles') <!-- ここに @push('styles') で追加されたコンテンツが挿入されます -->
 </head>
 
 <body>
@@ -23,15 +24,15 @@
 
             <!-- ナビゲーション -->
             <nav class="d-flex">
-                <a href="{{ route('logout') }}" class="me-3 text-decoration-none text-white">ログアウト</a>
-                <a href="{{ url('/mypage') }}" class="me-3 text-decoration-none text-white">マイページ</a>
-                <a href="{{ url('/create') }}" class="btn btn-light text-dark">出品</a> <!-- 出品ボタンの文字色を黒、背景色を白 -->
+                <a href="{{ route('logout') }}" class="me-3 text-decoration-none text-white" aria-label="ログアウト">ログアウト</a>
+                <a href="{{ url('/mypage') }}" class="me-3 text-decoration-none text-white" aria-label="マイページ">マイページ</a>
+                <a href="{{ url('/create') }}" class="btn btn-light text-dark" aria-label="出品">出品</a>
             </nav>
         </div>
     </header>
 
     <main class="container mt-4">
-        @yield('content')
+        @yield('content') <!-- ここに子テンプレートのコンテンツが挿入されます -->
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'ホーム')
+@section('title', '送付先住所変更')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/purchases/address-edit.css') }}">
+@endpush
 
 @section('content')
-<p>ここにコンテンツが入ります。</p>
+<div class="main-content">
+    <!-- 送付先住所変更のコンテンツ -->
+</div>
 @endsection

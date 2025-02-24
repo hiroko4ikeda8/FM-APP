@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ItemController;
+use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Fortify::loginView(function () {
+    return view('auth.login');
 });
+
+Route::get('/', [ItemController::class, 'index']);

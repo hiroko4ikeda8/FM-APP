@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フリマアプリ - @yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+    <link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
+    @stack('styles') <!-- ここに @push('styles') で追加されたコンテンツが挿入されます -->
 
 <body>
     <header class="bg-dark p-3 text-center">

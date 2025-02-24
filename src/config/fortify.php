@@ -18,7 +18,7 @@ return [
         'login' => null,
     ],
     'paths' => [
-        'login' => null,
+        'login' => 'auth.login', // 作成した login.blade.php を指定
         'logout' => null,
         'password' => [
             'request' => null,
@@ -28,7 +28,7 @@ return [
             'confirm' => null,
             'confirmation' => null,
         ],
-        'register' => null,
+        'register' => 'auth.register',
         'verification' => [
             'notice' => null,
             'verify' => null,
@@ -51,7 +51,7 @@ return [
         ],
     ],
     'redirects' => [
-        'login' => null,
+        'login' => '/',
         'logout' => null,
         'password-confirmation' => null,
         'register' => null,
