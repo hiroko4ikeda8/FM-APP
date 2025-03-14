@@ -1,7 +1,4 @@
-/* resources/css/app.css */
-/* Bootstrapのスタイルをインポート */
-@import "~bootstrap/dist/css/bootstrap.min.css";
-
+/* resources/css/auth.css */
 
 /* カスタムスタイルの定義 */
 .header-logo {
@@ -9,16 +6,7 @@
     text-align: left;
 }
 
-.search-form {
-    width: 50%;
-    margin-top: 0;
-}
 
-.nav-links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
 /* PC (1400-1540px) 用スタイル */
 @media (min-width: 1400px) and (max-width: 1540px) {
@@ -43,3 +31,4 @@
         max-width: 500px;
     }
 }
+

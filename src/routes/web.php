@@ -19,4 +19,4 @@ Fortify::loginView(function () {
     return view('auth.login');
 });
 
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('items.index');

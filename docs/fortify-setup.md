@@ -8,7 +8,7 @@
 - **Laravel 8.83.29**
 - **Laravel Fortify 1.x（PHP 7.4 との互換性に注意）**
 - **PHP 7.4.9**
-- **MySQL 8.0.26**
+- **MySQL（MariaDB 10.3.39）**
 - **Docker（WSL2環境）を使用**
 
 ⚠ **Fortify のバージョンによっては、PHP 7.4 で動作しないことがあります。**

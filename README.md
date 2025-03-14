@@ -7,9 +7,9 @@
 ## 1. 必要なツールのインストール
 まず、以下のツールをインストールします。
 
-- Gitのインストール
-- Dockerのインストール
-- WSLのインストール
+- [GitHubのインストール](https://desktop.github.com/)（GitHub Desktop）
+- [Dockerのインストール](https://docs.docker.com/get-docker/)
+- [WSLのインストール](https://docs.microsoft.com/ja-jp/windows/wsl/install)
 
 ## 環境情報
 - **OS**: Windows 11  
@@ -86,6 +86,7 @@ Laravelプロジェクトのための基本的な `.gitignore` 設定を行い�
 php artisan migrate
 ```
 
+
 データベースに初期データを投入するために、以下のコマンドを実行します
 
 ```bash
@@ -102,6 +103,52 @@ php artisan db:seed
 ## 11. Bootstrapの設定
 Bootstrapを使ってレスポンシブデザインを効率化するためのセットアップ手順については、[bootstrap-setup.md](./docs/bootstrap-setup.md) を参照してください。
 
-以上で開発環境のセットアップは完了です。
+## 12. フロントエンド環境のセットアップ
+npm（Node.js）でフロントエンドのパッケージをインストール
+
+npmの依存関係をインストール
+```bash
+npm install
+```
+
+開発用のCSS・JavaScriptをビルド（コンパイル）
+```bash
+npm run dev
+```
+
+**※** 
+npm run dev を実行しないと、CSSやJSが反映されない！
+本番環境なら npm run prod で圧縮したファイルを作成
+
+**※**
+BladeやCSSを修正しても反映されない時の確認ポイント
+反映されない原因チェック
+
+1. CSS・JSのビルドを忘れていないか？
+
+npm run dev を実行したか確認！
+
+2. キャッシュが影響していないか？
+
+ブラウザのキャッシュをクリア（Ctrl + Shift + R でリロード）
+
+3. Laravelのキャッシュ削除を行ったか？
+
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+```
+
+4. シンボリックリンクが正しく設定されているか？
+
+ストレージにアップロードした画像が表示されない場合
+```bash
+php artisan storage:link
+```
+これらの確認ポイントをチェックして、問題が解決しない場合は再度確認を行ってください。
+
+
+これで開発環境のセットアップは完了です。
 
 ![ER Diagram](docs/FM-APP.png)

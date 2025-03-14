@@ -30,4 +30,6 @@ docker/mysql/data/*
 .DS_Store
 Thumbs.db
 
+ER図＿開き方メモ.txt
+
 !.gitkeep
