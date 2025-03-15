@@ -1,0 +1,59 @@
+/* resources/css/auth.css */
+
+/* カスタムスタイルの定義 */
+.header-logo {
+    width: auto;
+    text-align: left;
+}
+
+
+
+/* PC (1400-1540px) 用スタイル */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .container {
+        max-width: 1540px;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 800px;
+    }
+}
+
+/* タブレット (768-850px) 用スタイル */
+@media (min-width: 768px) and (max-width: 850px) {
+    .container {
+        max-width: 850px;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+/* profile.css */
+
+/* アイコンのスタイル */
+#profile-picture {
+    width: 150px;
+    /* 幅を150pxに設定 */
+    height: 150px;
+    /* 高さを150pxに設定 */
+    object-fit: cover;
+    /* 画像が枠内で切り取られないようにする */
+    border-radius: 50%;
+    /* 画像を丸く表示 */
+    margin-bottom: 20px;
+    /* 下に余白を追加 */
+}
+
+/* ファイル選択ボタンのスタイル */
+#profilePicture {
+    border: 1px solid #ccc;
+    /* 枠線を追加 */
+    padding: 5px;
+    /* ボタン内の余白 */
+    cursor: pointer;
+    /* ポインタカーソルを表示 */
+}

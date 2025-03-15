@@ -1,49 +1,53 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール設定')
+@section('title', 'プロフィール')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/auth/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/auth/edit-profile.css') }}">
 @endpush
 
 @section('content')
 <div class="container mt-5">
-    <h2>プロフィール設定</h2>
-    <form method="POST" action="{{ route('profile.update') }}">
-        @csrf
-        @method('PUT') <!-- PUTリクエストを使う場合 -->
+    <h2>プロフィール</h2>
 
-        <div class="row mb-3">
-            <!-- アイコンの表示 -->
-            <div class="col-md-6">
-                <img src="{{ asset('images/default-avatar.jpg') }}" alt="アイコン" class="img-fluid" id="profile-picture">
-            </div>
-            <div class="col-md-6">
-                <input type="file" class="form-control" id="profilePicture" name="profile_picture">
-            </div>
+    <!-- 上のフォーム: アイコンとユーザー名 -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <img src="{{ asset('images/default-avatar.jpg') }}" alt="アイコン" class="img-fluid" id="profile-picture">
+        </div>
+        <div class="col-md-4">
+            <h4>{{ Auth::user()->username }}</h4> <!-- ユーザー名 -->
+        </div>
+        <div class="col-md-4">
+            <a href="{{ route('profile.edit') }}" class="btn btn-primary">プロフィールを編集</a> <!-- 編集ボタン -->
+        </div>
+    </div>
+
+    <!-- 下のフォーム: 商品リスト -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h5>出品した商品</h5>
+            <ul>
+                @foreach($user->items as $item)
+                <li><a href="{{ route('item.show', $item->id) }}">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像" width="50">
+                        {{ $item->name }}
+                    </a></li>
+                @endforeach
+            </ul>
         </div>
 
-        <div class="mb-3">
-            <label for="username" class="form-label">ユーザー名</label>
-            <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
+        <div class="col-md-6">
+            <h5>購入した商品</h5>
+            <ul>
+                @foreach($user->purchases as $purchase)
+                <li><a href="{{ route('item.show', $purchase->item->id) }}">
+                        <img src="{{ asset('storage/' . $purchase->item->image) }}" alt="商品画像" width="50">
+                        {{ $purchase->item->name }}
+                    </a></li>
+                @endforeach
+            </ul>
         </div>
-
-        <div class="mb-3">
-            <label for="postalCode" class="form-label">郵便番号</label>
-            <input type="text" class="form-control" id="postalCode" name="postal_code" value="{{ old('postal_code') }}">
-        </div>
-
-        <div class="mb-3">
-            <label for="address" class="form-label">住所</label>
-            <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
-        </div>
-
-        <div class="mb-3">
-            <label for="buildingName" class="form-label">建物名</label>
-            <input type="text" class="form-control" id="buildingName" name="building_name" value="{{ old('building_name') }}">
-        </div>
-
-        <button type="submit" class="btn btn-primary">更新</button>
-    </form>
+    </div>
 </div>
 @endsection

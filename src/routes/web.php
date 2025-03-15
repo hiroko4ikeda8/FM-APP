@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Fortify::loginView(function () {
 });
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
+
+Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
