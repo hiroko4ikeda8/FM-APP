@@ -6,8 +6,6 @@
     text-align: left;
 }
 
-
-
 /* PC (1400-1540px) 用スタイル */
 @media (min-width: 1400px) and (max-width: 1540px) {
     .container {
@@ -56,4 +54,36 @@
     /* ボタン内の余白 */
     cursor: pointer;
     /* ポインタカーソルを表示 */
+}
+
+/* プロフィールを編集ボタンの背景色を変更 */
+.btn-primary {
+    background: white;
+    /* 背景色を白に */
+    color: #FF5555;
+    /* テキストカラーを #FF5555 に */
+    border: 1px solid #FF5555;
+    /* ボーダーも同じ色に */
+    padding: 10px 20px;
+    /* 内部余白 */
+    text-align: center;
+    /* テキストを中央揃え */
+    font-size: 16px;
+    /* フォントサイズ */
+    border-radius: 5px;
+    /* 角を丸くする */
+    display: inline-block;
+    /* インライン要素として表示 */
+    text-decoration: none;
+    /* リンクの下線を消す */
+}
+
+/* ホバー時のスタイル */
+.btn-primary:hover {
+    background: #FF5555;
+    /* ホバー時に背景色をテキスト色に */
+    color: white;
+    /* ホバー時にテキストを白に */
+    border: 1px solid #FF5555;
+    /* ホバー時にボーダーも同じ色に */
 }
