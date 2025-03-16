@@ -1,0 +1,34 @@
+/* resources/css/header-auth.css */
+
+/* カスタムスタイルの定義 */
+.header-logo img {
+    width: auto;
+    text-align: left;
+}
+
+/* PC (1400-1540px) 用スタイル */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .container {
+        max-width: 1540px;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 800px;
+    }
+}
+
+/* Bootstrapの基本スタイルをオーバーライド */
+body,
+.form-control,
+.btn,
+.form-label,
+h1,
+h2,
+h3,
+h4,
+p {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 24px !important;
+}

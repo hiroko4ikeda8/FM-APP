@@ -17,7 +17,7 @@
             <h4>テストユーザー</h4> <!-- 仮のユーザー名 -->
         </div>
         <div class="col-md-4">
-            <a href="#" class="btn btn-primary">プロフィールを編集</a> <!-- 仮の編集ボタン -->
+            <a href="/mypage/profile" class="btn btn-primary">プロフィールを編集</a> <!-- 仮の編集ボタン -->
         </div>
     </div>
 

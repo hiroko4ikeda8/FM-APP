@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\AuthController;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Fortify::loginView(function () {
     return view('auth.login');
 });
 
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
+Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name(('profile.edit'));
+Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name(('profile.update'));
