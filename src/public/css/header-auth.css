@@ -1,4 +1,32 @@
 /* resources/css/header-auth.css */
+/* カスタムスタイルの定義 */
+.header-logo {
+    width: auto;
+    text-align: left;
+}
+/* ヘッダーのサイズを固定 */
+.header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* コンテンツの位置を調整 */
+.container {
+    margin-top: 100px;
+    /* ヘッダーの高さ分 */
+    max-width: 800px;
+    width: 100%;
+}
 
 /* カスタムスタイルの定義 */
 .header-logo img{

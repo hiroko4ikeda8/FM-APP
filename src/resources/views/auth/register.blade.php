@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 80px);">
-    <div class="card p-4" style="width: 680px; height: 678px;">
+    <div class="card p-4" style="width: 700px; height: 800px;">
         <h2 class="text-center mb-4">会員登録</h2>
         <form method="POST" action="#">
             @csrf

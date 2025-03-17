@@ -1,11 +1,5 @@
 /* resources/css/auth.css */
 
-/* カスタムスタイルの定義 */
-.header-logo {
-    width: auto;
-    text-align: left;
-}
-
 /* PC (1400-1540px) 用スタイル */
 @media (min-width: 1400px) and (max-width: 1540px) {
     .container {
