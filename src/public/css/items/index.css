@@ -8,8 +8,34 @@
 @media (min-width: 768px) {
 
     .item img.fixed-size{
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
         object-fit: cover;
     }
+}
+
+/* 通常状態のテキストカラー */
+/* 通常状態のテキストカラー */
+.main-content .nav-container .nav-link {
+    color: #5F5F5F;
+    background-color: transparent !important;
+    /* 背景色を透明に */
+    border: none;
+}
+
+/* マウスオーバー時のテキストカラー */
+.main-content .nav-container .nav-link:hover {
+    color: #FF5555;
+}
+
+/* アクティブなタブのスタイル */
+.main-content .nav-container .nav-link.active {
+    color: #FF0000 !important;
+    /* 文字色を赤に */
+    font-weight: bold;
+    /* 太字に（不要なら削除） */
+    background-color: transparent !important;
+    /* 背景色を完全に削除 */
+    box-shadow: none !important;
+    border: none;
 }
