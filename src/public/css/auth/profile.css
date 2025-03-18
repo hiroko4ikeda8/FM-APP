@@ -1,31 +1,4 @@
-/* resources/css/auth.css */
-
-/* PC (1400-1540px) 用スタイル */
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .container {
-        max-width: 1540px;
-    }
-
-    .main-content {
-        width: 100%;
-        max-width: 800px;
-    }
-}
-
-/* タブレット (768-850px) 用スタイル */
-@media (min-width: 768px) and (max-width: 850px) {
-    .container {
-        max-width: 850px;
-    }
-
-    .main-content {
-        width: 100%;
-        max-width: 500px;
-    }
-}
-
 /* profile.css */
-
 /* アイコンのスタイル */
 #profile-picture {
     width: 150px;
@@ -50,34 +23,28 @@
     /* ポインタカーソルを表示 */
 }
 
-/* プロフィールを編集ボタンの背景色を変更 */
-.btn-primary {
-    background: white;
-    /* 背景色を白に */
-    color: #FF5555;
-    /* テキストカラーを #FF5555 に */
-    border: 1px solid #FF5555;
-    /* ボーダーも同じ色に */
-    padding: 10px 20px;
-    /* 内部余白 */
-    text-align: center;
-    /* テキストを中央揃え */
-    font-size: 16px;
-    /* フォントサイズ */
-    border-radius: 5px;
-    /* 角を丸くする */
-    display: inline-block;
-    /* インライン要素として表示 */
-    text-decoration: none;
-    /* リンクの下線を消す */
+/* 通常状態のテキストカラー */
+/* 通常状態のテキストカラー */
+.main-content .nav-container .nav-link {
+    color: #5F5F5F;
+    background-color: transparent !important;
+    /* 背景色を透明に */
+    border: none;
 }
 
-/* ホバー時のスタイル */
-.btn-primary:hover {
-    background: #FF5555;
-    /* ホバー時に背景色をテキスト色に */
-    color: white;
-    /* ホバー時にテキストを白に */
-    border: 1px solid #FF5555;
-    /* ホバー時にボーダーも同じ色に */
+/* マウスオーバー時のテキストカラー */
+.main-content .nav-container .nav-link:hover {
+    color: #FF5555;
+}
+
+/* アクティブなタブのスタイル */
+.main-content .nav-container .nav-link.active {
+    color: #FF0000 !important;
+    /* 文字色を赤に */
+    font-weight: bold;
+    /* 太字に（不要なら削除） */
+    background-color: transparent !important;
+    /* 背景色を完全に削除 */
+    box-shadow: none !important;
+    border: none;
 }
