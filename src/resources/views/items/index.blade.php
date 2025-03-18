@@ -10,7 +10,6 @@
 @section('content')
 <div class="main-content">
     <!-- 商品一覧のコンテンツ -->
-    <!-- ナビゲーションメニュー -->
     <nav class="nav-container border-bottom pb-2 mb-3">
         <ul class="nav nav-pills">
             <li class="nav-item">

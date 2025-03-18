@@ -22,6 +22,9 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
+Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
+Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
+
 Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
 Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name(('profile.edit'));
 Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name(('profile.update'));

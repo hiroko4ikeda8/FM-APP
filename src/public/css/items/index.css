@@ -8,13 +8,12 @@
 @media (min-width: 768px) {
 
     .item img.fixed-size{
-        width: 160px;
-        height: 160px;
+        width: 200px;
+        height: 200px;
         object-fit: cover;
     }
 }
 
-/* 通常状態のテキストカラー */
 /* 通常状態のテキストカラー */
 .main-content .nav-container .nav-link {
     color: #5F5F5F;
