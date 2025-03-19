@@ -24,10 +24,6 @@
                 <div class="form-group mb-3">
                     <label for="productName">商品名</label>
                     <p id="productName">商品名がここに入ります</p> <!-- 仮のデータ -->
-                </div>
-
-                <!-- ブランド名 -->
-                <div class="form-group mb-3">
                     <label for="brandName">ブランド名</label>
                     <p id="brandName">ブランド名がここに入ります</p> <!-- 仮のデータ -->
                 </div>
@@ -36,6 +32,17 @@
                 <div class="form-group mb-3">
                     <label for="price">金額（税込み）</label>
                     <p id="price">￥5000</p> <!-- 仮のデータ -->
+                </div>
+                <!-- いいね・コメントアイコンの追加 -->
+                <div class="form-group mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <img src="{{ asset('images/like-icon.png') }}" alt="いいね" class="icon" style="width: 30px; height: 30px;">
+                        <span>いいね</span>
+                    </div>
+                    <div>
+                        <img src="{{ asset('images/comment-icon.png') }}" alt="コメント" class="icon" style="width: 30px; height: 30px;">
+                        <span>コメント</span>
+                    </div>
                 </div>
 
                 <!-- 購入手続きボタン -->
@@ -46,12 +53,11 @@
                 <!-- 商品説明 -->
                 <div class="form-group mb-3">
                     <label for="description">商品説明</label>
-                    <p id="description">商品の説明がここに入ります。例えば、状態や特徴など。</p> <!-- 仮のデータ -->
                 </div>
 
                 <!-- カラー -->
                 <div class="form-group mb-3">
-                    <label for="color">カラー</label>
+                    <label for="color">カラー:</label>
                     <p id="color">シルバー</p> <!-- 仮のデータ -->
                 </div>
 
@@ -61,6 +67,10 @@
                     <p id="condition">新品</p> <!-- 仮のデータ -->
                 </div>
 
+                <!-- 商品説明 -->
+                <div class="form-group mb-3">
+                    <label for="description">商品の情報</label>
+                </div>
                 <!-- カテゴリー -->
                 <div class="form-group mb-3">
                     <label for="category">カテゴリー</label>
@@ -70,7 +80,14 @@
                 <!-- コメント -->
                 <div class="form-group mb-3">
                     <label for="comments">コメント</label>
-                    <p id="comments">商品の説明や問い合わせがここに表示されます。</p> <!-- 仮のデータ -->
+                </div>
+
+                <!-- admin画像の表示窓 -->
+                <div class="form-group mb-3">
+                    <div class="image-display-box">
+                        <img src="仮アイコン画像のパス" alt="admin画像" class="item-image">
+                    </div>
+                    <label for="imageDisplay">admin</label>
                 </div>
 
                 <!-- コメントを入力するボックス -->
@@ -81,15 +98,7 @@
 
                 <!-- コメント送信ボタン -->
                 <div class="form-group mb-3">
-                    <button class="btn btn-success w-100">コメントを送信する</button>
-                </div>
-
-                <!-- 商品画像の表示窓 -->
-                <div class="form-group mb-3">
-                    <label for="imageDisplay">画像</label>
-                    <div class="image-display-box">
-                        <img src="仮画像のパス" alt="商品画像" class="item-image">
-                    </div>
+                    <button id="submitComment" class="btn btn-success w-100">コメントを送信する</button>
                 </div>
             </div>
 
