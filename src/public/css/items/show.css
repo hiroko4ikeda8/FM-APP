@@ -1,0 +1,5 @@
+.item-image {
+    width: 550px;
+    height: 550px;
+    object-fit: cover;
+}

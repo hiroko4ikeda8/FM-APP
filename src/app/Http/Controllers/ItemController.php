@@ -14,7 +14,22 @@ class ItemController extends Controller
         return view('items.index', compact('items')); // 商品一覧のBladeファイルを表示
     }
 
+    public function show($item_id)
+    {
+        // 仮の商品データ
+        $item = (object) [
+            'id' => 1,
+            'name' => '腕時計',
+            'description' => 'これは仮の商品説明です。商品詳細については動的にデータを取得します。',
+            'price' => 15000,
+            'condition' => '良好',
+            'category' => 'ファッション',
+            'image' => 'images/Armani+Mens+Clock.jpg'  // 仮画像のパス
+        ];
 
+        // ビューに仮の商品データを渡す
+        return view('items.show', compact('item'));
+    }
 
     
     // 商品出品フォームを表示

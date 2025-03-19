@@ -21,6 +21,10 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
+// 商品詳細画面へのルート
+Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+
+// 商品購入処理へのルート
 
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
