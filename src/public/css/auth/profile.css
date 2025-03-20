@@ -14,7 +14,7 @@
 }
 
 /* 編集ボタンのスタイル */
-input[type="file"] {
+.input[type="file"] {
     display: none;
     /* 非表示 */
 }
@@ -59,7 +59,6 @@ input[type="file"] {
     width: 100%;
     height: auto;
 }
-
 /* スクリーンサイズが大きい時に固定サイズに変更 */
 @media (min-width: 768px) {
 
