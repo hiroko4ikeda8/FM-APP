@@ -21,4 +21,10 @@ class PurchaseController extends Controller
         // 商品情報をビューに渡して表示
         return view('purchases.purchase', compact('item'));
     }
+
+    public function editAddress($item_id)
+    {
+        // 必要に応じて、$item_id を使用してデータを取得する処理を追加します。
+        return view('purchases.address-edit', compact('item_id'));
+    }
 }

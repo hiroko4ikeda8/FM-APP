@@ -23,7 +23,6 @@
                 <div class="item-details">
                     <!-- 商品名 -->
                     <div class="form-group mb-3">
-                        <label for="productName">商品名</label>
                         <p id="productName" class="product-name">商品名がここに入ります</p> <!-- 仮のデータ -->
                         <label for="brandName">ブランド名</label>
                         <p id="brandName" class="brand-name">ブランド名がここに入ります</p> <!-- 仮のデータ -->

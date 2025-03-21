@@ -29,7 +29,7 @@ Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show'
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
 
-Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
+Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
 
 
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
