@@ -1,8 +1,72 @@
-.image-container img {
-    width: 200px;
-    height: 200px;
+.img-container {
+    width: 100%;
+    /* 親要素の幅に合わせる */
+    height: 0;
+    padding-top: 100%;
+    /* 高さを幅の100%に設定して縦横比1:1に */
+    position: relative;
+    overflow: hidden;
+    /* 画像がはみ出ないように */
+}
+
+.img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 幅を親要素に合わせる */
+    height: 100%;
+    /* 高さを親要素に合わせる */
     object-fit: cover;
-    /* 画像をトリミングしてバランスよく表示 */
+    /* 縦横比に合わせてトリミング */
+}
+
+.row.mb-4 {
+    display: flex;  /* 親要素にflexboxを適用 */
+    align-items: stretch;  /* 子要素に高さを合わせる */
+}
+
+.col-md-4 {
+    display: flex;  /* 右側のカラムもflexboxに設定 */
+    flex-direction: column;  /* 子要素を縦並びにする */
+}
+
+table {
+    flex-grow: 1;  /* テーブルが余ったスペースを埋める */
+    width: 100%;   /* テーブルが親要素の幅に収まるように */
+}
+/* 購入するボタンの背景色を変更 */
+.btn-secondary {
+    background: white;
+    /* 背景色を白に */
+    color: #FF5555;
+    /* テキストカラーを #FF5555 に */
+    border: 1px solid #FF5555;
+    /* ボーダーも同じ色に */
+    padding: 10px 20px;
+    /* 内部余白 */
+    text-align: center;
+    /* テキストを中央揃え */
+    font-size: 16px;
+    /* フォントサイズ */
     border-radius: 5px;
-    /* 角を少し丸める（任意） */
+    /* 角を丸くする */
+    cursor: pointer;
+    /* 明示的にポインターカーソルを表示 */
+    display: inline-block;
+    /* インライン要素として表示 */
+    text-decoration: none;
+    /* リンクの下線を消す */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* ここで色の変化をスムーズに */
+}
+
+/* ホバー時のスタイル */
+.btn-secondary:hover {
+    background: #FF5555;
+    /* ホバー時に背景色をテキスト色に */
+    color: white;
+    /* ホバー時にテキストを白に */
+    border: 1px solid #FF5555;
+    /* ホバー時にボーダーも同じ色に */
 }

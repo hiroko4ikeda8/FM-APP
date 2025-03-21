@@ -3,68 +3,100 @@
 @section('title', '商品購入')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/purchases/order.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchases/purchase.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header-basic.css') }}">
 @endpush
 
 @section('content')
-<div class="main-content">
+<div class="main-content p-4">
     <!-- 商品画像セクション -->
     <div class="row mb-4">
         <!-- 左側 2/3 -->
         <div class="col-md-8">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像" style="width: 200px; height: 200px; object-fit: cover;">
+            <div class="row">
+                <!-- 左側 1/4 画像 -->
+                <div class="col-md-3">
+                    <div class="img-container">
+                        <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像">
+                    </div>
+                </div>
+
+                <!-- 左側 2/4 商品名と金額 -->
+                <div class="col-md-6">
+                    <h4>Armani Mens Clock</h4>
+                    <p>￥47,000</p>
+                </div>
             </div>
+            <hr>
         </div>
 
         <!-- 右側 1/3 -->
         <div class="col-md-4">
-            <h5 class="text-center">その他情報</h5>
-            <p class="text-center">ここに関連情報を記載できます。</p>
-        </div>
-    </div>
-
-    <!-- 支払方法セクション -->
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <h5 class="text-center">支払方法</h5>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>支払い方法</th>
-                        <th>詳細</th>
-                    </tr>
-                </thead>
+            <!-- テーブル -->
+            <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <td>クレジットカード</td>
-                        <td>カード番号、期限など</td>
+                        <td>商品代金 ￥47,000</td>
                     </tr>
                     <tr>
-                        <td>コンビニ払い</td>
-                        <td>支払い番号を発行</td>
+                        <td>支払い方法 コンビニ払い</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- 支払い方法セクション -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="row">
+                <!-- 左側（1/2）：支払い方法タイトル -->
+                <div class="col-md-6 d-flex align-items-center">
+                    <label for="paymentMethod" class="fw-bold">支払い方法</label>
+                </div>
+            </div>
+            <!-- 右側（1/2）：支払い方法選択 -->
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="text-start">
+                        <select class="form-select" id="paymentMethod">
+                            <option value="" selected disabled>選択してください</option>
+                            <option value="credit_card">クレジットカード</option>
+                            <option value="convenience_store">コンビニ払い</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- 右側1/3：購入ボタン -->
+        <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
+            <button class="btn btn-secondary w-100">購入する</button>
+        </div>
+    </div>
     <!-- 配送先セクション -->
     <div class="row mb-4">
         <div class="col-md-8">
-            <h5 class="text-center">配送先</h5>
-            <form>
-                <div class="form-group mb-3">
-                    <label for="address">住所</label>
-                    <input type="text" class="form-control" id="address" placeholder="住所を入力">
+            <div class="row">
+                <!-- 左側（1/2）：配送先タイトル -->
+                <div class="col-md-6 d-flex align-items-center">
+                    <label for="shipping-info" class="fw-bold">配送先</label>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="phone">電話番号</label>
-                    <input type="text" class="form-control" id="phone" placeholder="電話番号を入力">
+                <!-- 右側（1/2）：変更リンク -->
+                <div class="col-md-6 text-end">
+                    <a href="{{ url('/purchase/address/1') }}" class="text-primary" style="text-decoration: none;">変更する</a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">配送先を保存</button>
-            </form>
+            </div>
+            <!-- 右側（1/2）：空欄 -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <!-- 右側は中央にテキストを配置 -->
+                <div class="text-start">
+                    <p><strong>〒</strong> XXX-YYYY</p>
+                    <p>ここには住所と建物が入ります</p>
+                </div>
+            </div>
+            <hr>
         </div>
     </div>
 </div>

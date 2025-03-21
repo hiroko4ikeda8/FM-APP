@@ -27,7 +27,10 @@ Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show'
 
 // 商品購入処理へのルート
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
-//Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');//
+Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+
+Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
+
 
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
