@@ -1,10 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.header')
 
 @section('title', '商品購入')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/purchases/purchase.css') }}">
-<link rel="stylesheet" href="{{ asset('css/header-basic.css') }}">
 @endpush
 
 @section('content')
@@ -57,14 +56,12 @@
             </div>
             <!-- 右側（1/2）：支払い方法選択 -->
             <div class="row">
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <div class="text-start">
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
                         <select class="form-select" id="paymentMethod">
                             <option value="" selected disabled>選択してください</option>
-                            <option value="credit_card">クレジットカード</option>
-                            <option value="convenience_store">コンビニ払い</option>
+                            <option value="credit_card">コンビニ払い</option>
+                            <option value="convenience_store">カード支払い</option>
                         </select>
-                    </div>
                 </div>
             </div>
             <hr>

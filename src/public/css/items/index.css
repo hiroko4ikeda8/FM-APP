@@ -1,3 +1,13 @@
+/* styles.css または <style> タグ内 */
+.nav-container {
+    border-bottom: 2px solid #000;
+    /* 2px 太さの黒いボーダー */
+    padding-bottom: 0;
+    /* 下のパディングを調整 */
+    margin-bottom: 1rem;
+    /* 下のマージンを調整 */
+}
+
 /* レスポンシブ対応の画像 */
 .item img {
     width: 100%;

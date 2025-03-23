@@ -1,0 +1,30 @@
+/* 変更するボタンのデフォルトスタイル */
+.btn-update-address {
+    background-color: #FF5555;
+    /* 背景色を赤に */
+    color: white;
+    /* テキストカラーを白に */
+    border: 1px solid #FF5555;
+    /* ボーダーを赤に */
+    padding: 10px 20px;
+    /* 内部余白 */
+    text-align: center;
+    /* テキストを中央揃え */
+    font-size: 18px;
+    /* フォントサイズ */
+    border-radius: 5px;
+    /* 角を丸くする */
+    display: inline-block;
+    /* インライン要素として表示 */
+    text-decoration: none;
+    /* リンクの下線を消す */
+}
+
+/* ホバー時のスタイル */
+.btn-update-address:hover {
+    background-color: white;
+    color: #ff5555;
+    /* テキストカラーは白のまま */
+    border-color: #ff5555;
+    /* ボーダーの色も変更 */
+}

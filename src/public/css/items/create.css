@@ -118,13 +118,13 @@ input[type="file"] {
 }
 
 /* 出品ボタンのスタイル */
-.btn-Exhibit {
-    background: white;
-    /* 背景色を白に */
-    color: #FF5555;
-    /* テキストカラーを #FF5555 に */
+.btn-create {
+    background-color: #FF5555;
+    /* 背景色を赤に */
+    color: white;
+    /* テキストカラーを白に */
     border: 1px solid #FF5555;
-    /* ボーダーも同じ色に */
+    /* ボーダーを赤に */
     padding: 10px 20px;
     /* 内部余白 */
     text-align: center;
@@ -140,11 +140,10 @@ input[type="file"] {
 }
 
 /* ホバー時のスタイル */
-.btn-Exhibit:hover {
-    background: #FF5555;
-    /* ホバー時に背景色をテキスト色に */
-    color: white;
-    /* ホバー時にテキストを白に */
-    border: 1px solid #FF5555;
-    /* ホバー時にボーダーも同じ色に */
+.btn-create:hover {
+    background-color: white;
+    color: #ff5555;
+    /* テキストカラーは白のまま */
+    border-color: #ff5555;
+    /* ボーダーの色も変更 */
 }

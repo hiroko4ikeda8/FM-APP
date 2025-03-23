@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.header')
 
 @section('title', '商品詳細')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
-<link rel="stylesheet" href="{{ asset('css/header-basic.css') }}">
 @endpush
 
 @section('content')
-<div class="main-content p-4">
+<div class="main-content">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <!-- 左側: 商品画像 -->
@@ -59,7 +58,7 @@
                 </div>
                 <!-- 購入手続きボタン -->
                 <div class="form-group mb-3">
-                    <button class="btn btn-secondary w-100">購入手続きへ</button>
+                    <button class="btn btn-purchase w-100">購入手続きへ</button>
                 </div>
                 <!-- 商品説明 -->
                 <div class="section-title-details">
@@ -119,7 +118,7 @@
 
                 <!-- コメント送信ボタン -->
                 <div class="form-group mb-3">
-                    <button id="submitComment" class="btn btn-secondary w-100">コメントを送信する</button>
+                    <button id="submitComment" class="btn btn-comment-submit w-100">コメントを送信する</button>
                 </div>
             </div>
 

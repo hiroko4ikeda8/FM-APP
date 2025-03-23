@@ -1,6 +1,6 @@
 .item-image {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: auto;
     object-fit: cover;
 }
 
@@ -33,7 +33,7 @@
 .d-flex {
     display: flex;
     align-items: center;
-    /* アイコンと数字が垂直に揃うように調整 */
+    flex-wrap: wrap;
 }
 
 /* 数字のスタイル */
@@ -116,37 +116,23 @@
 }
 
 /* 購入とコメントボタンの背景色を変更 */
-.btn-secondary {
-    background: white;
-    /* 背景色を白に */
-    color: #FF5555;
-    /* テキストカラーを #FF5555 に */
+.btn-purchase,
+.btn-comment-submit {
+    background-color: #FF5555;
+    /* 赤色 */
+    color: white;
     border: 1px solid #FF5555;
-    /* ボーダーも同じ色に */
     padding: 10px 20px;
-    /* 内部余白 */
-    text-align: center;
-    /* テキストを中央揃え */
-    font-size: 16px;
-    /* フォントサイズ */
+    font-size: 18px;
     border-radius: 5px;
-    /* 角を丸くする */
+    text-align: center;
     cursor: pointer;
-    /* 明示的にポインターカーソルを表示 */
-    display: inline-block;
-    /* インライン要素として表示 */
-    text-decoration: none;
-    /* リンクの下線を消す */
-    transition: background-color 0.3s ease, color 0.3s ease;
-    /* ここで色の変化をスムーズに */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* 購入とコメントボタンのホバー時のスタイル */
-.btn-secondary:hover {
-    background: #FF5555;
-    /* ホバー時に背景色をテキスト色に */
-    color: white;
-    /* ホバー時にテキストを白に */
-    border: 1px solid #FF5555;
-    /* ホバー時にボーダーも同じ色に */
+.btn-purchase:hover,
+.btn-comment-submit:hover {
+    background-color: white;
+    color: #FF5555;
+    border-color: #FF5555;
 }

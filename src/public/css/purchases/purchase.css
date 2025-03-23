@@ -35,6 +35,26 @@ table {
     flex-grow: 1;  /* テーブルが余ったスペースを埋める */
     width: 100%;   /* テーブルが親要素の幅に収まるように */
 }
+
+/* デフォルトの背景色を設定 */
+.form-select {
+    background-color: #fffbfb;
+    /* 任意の色に設定 */
+    color: #636769;
+    /* テキストの色 */
+}
+
+/* フォーカス時のスタイルを設定 */
+.form-select:focus {
+    background-color: #cccccc;
+    /* フォーカス時の背景色 */
+    color: #eaeaea;
+    /* フォーカス時のテキスト色 */
+
+    outline: none;
+    /* フォーカス時のアウトラインを非表示 */
+}
+
 /* 購入するボタンの背景色を変更 */
 .btn-secondary {
     background: white;

@@ -1,9 +1,3 @@
-/* resources/css/header-auth.css */
-/* カスタムスタイルの定義 */
-.header-logo {
-    width: auto;
-    text-align: left;
-}
 /* ヘッダーのサイズを固定 */
 .header {
     height: 100px;
@@ -20,55 +14,69 @@
     z-index: 1000;
 }
 
-/* コンテンツの位置を調整 */
-.container {
-    margin-top: 100px;
-    /* ヘッダーの高さ分 */
-    max-width: 800px;
-    width: 100%;
-}
-
-/* カスタムスタイルの定義 */
-.header-logo img{
+/* ロゴのスタイル */
+.header-logo img {
     width: auto;
     text-align: left;
 }
 
+/* メインコンテンツの位置調整 */
+.container-fluid {
+    margin-top: 120px;
+    /* ヘッダーの高さを考慮 */
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    /*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);*/
+}
+
 /* PC (1400-1540px) 用スタイル */
 @media (min-width: 1400px) and (max-width: 1540px) {
-    .container {
-        max-width: 1540px;
-    }
-
     .main-content {
-        width: 100%;
-        max-width: 800px;
+        max-width: 700px;
     }
 }
 
 /* タブレット (768-850px) 用スタイル */
 @media (min-width: 768px) and (max-width: 850px) {
-    .container {
-        max-width: 850px;
-    }
-
     .main-content {
-        width: 100%;
-        max-width: 700px;
+        max-width: 600px;
     }
 }
 
-/* Bootstrapの基本スタイルをオーバーライド */
-body,
 /* h2 要素に対するスタイル */
 h2 {
     font-family: 'Inter', sans-serif !important;
     font-weight: 550 !important;
     font-size: 36px !important;
+    text-align: center;
 }
 
+/* フォームラベル */
 .form-label {
     font-family: 'Inter', sans-serif !important;
     font-weight: 700 !important;
     font-size: 18px !important;
+}
+
+/* ボタン */
+.btn-login {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
 }

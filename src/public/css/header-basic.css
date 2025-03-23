@@ -1,5 +1,13 @@
 /* resources/css/header-basic.css */
-
+/* ナビゲーションリンクにInterフォントを適用し、太文字に設定 */
+/*.d-flex a {
+    font-family: 'Inter', sans-serif;
+}*/
+/* カスタムスタイルの定義 */
+.header-logo img {
+    width: auto;
+    text-align: left;
+}
 /* PC (1400-1540px) 用スタイル */
 @media (min-width: 1400px) and (max-width: 1540px) {
     .container {
@@ -22,11 +30,5 @@
         width: 100%;
         max-width: 700px;
     }
-}
-
-/* カスタムスタイルの定義 */
-.header-logo img {
-    width: auto;
-    text-align: left;
 }
 

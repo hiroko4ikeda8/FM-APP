@@ -1,10 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.header')
 
 @section('title', '商品出品')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/items/create.css') }}">
-<link rel="stylesheet" href="{{ asset('css/header-basic.css') }}">
 @endpush
 
 @section('content')
@@ -102,7 +101,7 @@
 
                     <!-- 出品ボタンセクション -->
                     <section class="submit-button">
-                        <button type="submit" class="btn btn-Exhibit w-100 mt-3">出品する</button>
+                        <button type="submit" class="btn btn-create w-100 mt-3">出品する</button>
                     </section>
                 </form>
             </div>
