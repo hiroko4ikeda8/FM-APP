@@ -1,7 +1,7 @@
 
 ### bootstrap-setup.md の内容
 
-```markdown
+
 # Bootstrap セットアップガイド
 
 ## はじめに

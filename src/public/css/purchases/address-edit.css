@@ -1,4 +1,16 @@
-/* 変更するボタンのデフォルトスタイル */
+.form-section {
+    padding-top: 10px;
+    /* 各セクションの上部に余白を追加 */
+    padding-bottom: 10px;
+    /* 各セクションの下部に余白を追加 */
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+    /* 最後のセクションの下部に余白を追加しない */
+}
+
+/* 登録するボタンのデフォルトスタイル */
 .btn-update-address {
     background-color: #FF5555;
     /* 背景色を赤に */
@@ -27,4 +39,19 @@
     /* テキストカラーは白のまま */
     border-color: #ff5555;
     /* ボーダーの色も変更 */
+}
+
+/* ログインリンクのフォントサイズを調整 */
+.text-center a.text-muted {
+    font-size: 18px !important;
+    /* お好きなサイズに調整 */
+    color: #0073CC !important;
+}
+
+/* ログインリンクのホバー時 */
+.text-center a.text-muted:hover {
+    color: #FF8C00 !important;
+    /* ホバー時に色を変更 */
+    text-decoration: underline !important;
+    /* ホバー時に下線を表示 */
 }
