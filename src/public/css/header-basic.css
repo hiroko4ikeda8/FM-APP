@@ -1,8 +1,18 @@
-/* resources/css/header-basic.css */
-/* ナビゲーションリンクにInterフォントを適用し、太文字に設定 */
-/*.d-flex a {
-    font-family: 'Inter', sans-serif;
-}*/
+/* ヘッダーのサイズを固定 */
+.header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
 /* カスタムスタイルの定義 */
 .header-logo img {
     width: auto;

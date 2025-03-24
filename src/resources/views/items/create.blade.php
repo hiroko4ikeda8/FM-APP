@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.header-basic')
 
 @section('title', '商品出品')
 

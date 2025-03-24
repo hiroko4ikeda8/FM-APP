@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.header-basic')
 
 @section('title', '商品購入')
 
@@ -57,19 +57,18 @@
             <!-- 右側（1/2）：支払い方法選択 -->
             <div class="row">
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                        <select class="form-select" id="paymentMethod">
-                            <option value="" selected disabled>選択してください</option>
-                            <option value="credit_card">コンビニ払い</option>
-                            <option value="convenience_store">カード支払い</option>
-                        </select>
+                    <select class="form-select" id="paymentMethod">
+                        <option value="" selected disabled>選択してください</option>
+                        <option value="credit_card">コンビニ払い</option>
+                        <option value="convenience_store">カード支払い</option>
+                    </select>
                 </div>
             </div>
             <hr>
         </div>
-
         <!-- 右側1/3：購入ボタン -->
         <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
-            <button class="btn btn-secondary w-100">購入する</button>
+            <button class="btn btn-purchase w-100">購入する</button>
         </div>
     </div>
     <!-- 配送先セクション -->

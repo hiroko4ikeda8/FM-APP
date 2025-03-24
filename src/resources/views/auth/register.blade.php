@@ -1,4 +1,4 @@
-@extends('layouts.auth_layout')
+@extends('layouts.header-auth')
 
 @section('title', '会員登録')
 

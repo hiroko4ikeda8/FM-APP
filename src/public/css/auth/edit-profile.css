@@ -1,120 +1,85 @@
-/* resources/css/auth.css */
-
-/* カスタムスタイルの定義 */
-.header-logo {
-    width: auto;
-    text-align: left;
+/* 全体的なコンテナにパディングを追加して、中央配置の整合性を保つ */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    /* 追加：全体にパディング */
 }
 
-
-
-/* PC (1400-1540px) 用スタイル */
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .container {
-        max-width: 1540px;
-    }
-
-    .main-content {
-        width: 100%;
-        max-width: 800px;
-    }
+.content-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    /* 追加：コンテンツ周りにパディング */
 }
 
-/* タブレット (768-850px) 用スタイル */
-@media (min-width: 768px) and (max-width: 850px) {
-    .container {
-        max-width: 850px;
-    }
-
-    .main-content {
-        width: 100%;
-        max-width: 500px;
-    }
+.footer-container {
+    flex: 1;
 }
 
-/* profile.css */
+/* プロフィールボックスにパディングを追加 */
+.profile-box {
+    max-width: 100%; /* ここを100%に設定 */
+    width: 100%;
+    padding: 0 20px 20px 20px;
+        /* 上部にはパディングを適用せず、左右と下部に20pxを設定 */
+}
+
+/* プロフィール設定タイトルセクション */
+.section-title {
+    text-align: center;
+    padding: 20px 0;
+    /* 上下のパディングを追加 */
+}
 
 /* アイコンのスタイル */
 #profile-picture {
     width: 150px;
-    /* 幅を150pxに設定 */
     height: 150px;
-    /* 高さを150pxに設定 */
     object-fit: cover;
-    /* 画像が枠内で切り取られないようにする */
     border-radius: 50%;
-    /* 画像を丸く表示 */
     margin-bottom: 20px;
-    /* 下に余白を追加 */
 }
 
-/* ファイル選択ボタンのスタイル */
-input[type="file"] {
-    display: none;
-    /* 非表示 */
-}
-
-/* 画像を選択するボタンの背景色を変更 */
-.btn-secondary{
+/* 画像選択ボタンのスタイル */
+.btn-secondary {
     background: white;
-    /* 背景色を白に */
     color: #FF5555;
-    /* テキストカラーを #FF5555 に */
     border: 1px solid #FF5555;
-    /* ボーダーも同じ色に */
     padding: 10px 20px;
-    /* 内部余白 */
     text-align: center;
-    /* テキストを中央揃え */
     font-size: 16px;
-    /* フォントサイズ */
     border-radius: 5px;
-    /* 角を丸くする */
     cursor: pointer;
-    /* 明示的にポインターカーソルを表示 */
     display: inline-block;
-    /* インライン要素として表示 */
     text-decoration: none;
-    /* リンクの下線を消す */
 }
 
 /* ホバー時のスタイル */
 .btn-secondary:hover {
     background: #FF5555;
-    /* ホバー時に背景色をテキスト色に */
     color: white;
-    /* ホバー時にテキストを白に */
-    border: 1px solid #FF5555;
-    /* ホバー時にボーダーも同じ色に */
 }
 
-/* 更新するボタンのデフォルトスタイル */
+/* 更新するボタンのスタイル */
 .btn-update-profile {
     background-color: #FF5555;
-    /* 背景色を赤に */
     color: white;
-    /* テキストカラーを白に */
     border: 1px solid #FF5555;
-    /* ボーダーを赤に */
     padding: 10px 20px;
-    /* 内部余白 */
-    text-align: center;
-    /* テキストを中央揃え */
     font-size: 18px;
-    /* フォントサイズ */
     border-radius: 5px;
-    /* 角を丸くする */
+    text-align: center;
     display: inline-block;
-    /* インライン要素として表示 */
     text-decoration: none;
-    /* リンクの下線を消す */
 }
 
-/* ホバー時のスタイル */
+/* 更新ボタンホバー時 */
 .btn-update-profile:hover {
     background-color: white;
     color: #ff5555;
-    /* テキストカラーは白のまま */
     border-color: #ff5555;
-    /* ボーダーの色も変更 */
 }

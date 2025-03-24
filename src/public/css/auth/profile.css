@@ -1,16 +1,13 @@
 /* profile.css */
 /* アイコンのスタイル */
+/* アイコンのスタイル */
 #profile-picture {
     width: 150px;
-    /* 幅を150pxに設定 */
     height: 150px;
-    /* 高さを150pxに設定 */
     object-fit: cover;
-    /* 画像が枠内で切り取られないようにする */
+    /* 画像を適切にトリミング */
     border-radius: 50%;
-    /* 画像を丸く表示 */
-    margin-bottom: 20px;
-    /* 下に余白を追加 */
+    /* 丸く表示 */
 }
 
 /* 編集ボタンのスタイル */
