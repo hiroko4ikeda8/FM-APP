@@ -1,7 +1,4 @@
 
-### bootstrap-setup.md の内容
-
-
 # Bootstrap セットアップガイド
 
 ## はじめに
