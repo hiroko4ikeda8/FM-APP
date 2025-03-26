@@ -64,6 +64,7 @@ class RegisteredUserController extends Controller
 
         $this->guard->login($user);
 
-        return app(RegisterResponse::class);
+        // プロフィール画面にリダイレクト
+        return app(RegisterResponse::class)->toResponse($request)->setTargetUrl(route('profile.show'));
     }
 }
