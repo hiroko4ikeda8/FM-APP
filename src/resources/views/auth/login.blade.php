@@ -13,17 +13,27 @@
         <!-- タイトルセクション -->
         <h2 class="text-center mb-4">ログイン</h2>
         <!-- ログインフォームセクション -->
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
+            <!-- エラーメッセージの表示 -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <!-- メールアドレスセクション -->
             <div class="form-section mb-4">
                 <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" id="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
             </div>
             <!-- パスワードセクション -->
             <div class="form-section mb-4">
                 <label for="password" class="form-label">パスワード</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <!-- ログインボタンセクション -->
             <div class="form-section mb-4 mt-5">

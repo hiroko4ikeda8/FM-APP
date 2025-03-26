@@ -20,7 +20,7 @@
         </section>
         <!-- 右側: プロフィール編集ボタン -->
         <section class="col-md-6 d-flex justify-content-center">
-            <a href="/mypage/profile" class="btn btn-profile-edit fw-bold">プロフィールを編集</a>
+            <a href="/mypage/profile" class="btn btn-profile-edit fw-bold px-4 w-50 fs-5">プロフィールを編集</a>
         </section>
     </div>
 </div>

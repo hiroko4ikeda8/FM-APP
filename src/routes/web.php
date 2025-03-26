@@ -3,7 +3,7 @@
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+// 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 // 商品詳細画面へのルート
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
@@ -31,10 +30,9 @@ Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('
 
 Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
 
-
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 
 Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
-Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name(('profile.edit'));
-Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name(('profile.update'));
+Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
+Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');

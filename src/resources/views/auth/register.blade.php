@@ -15,17 +15,27 @@
         <h2 class="text-center mb-4">会員登録</h2>
 
         <!-- 会員登録フォームセクション -->
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+            <!-- エラーメッセージの表示 -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <!-- ユーザー名セクション -->
             <div class="form-section mb-4">
                 <label for="name" class="form-label">ユーザー名</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
             </div>
             <!-- メールアドレスセクション -->
             <div class="form-section mb-4">
                 <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
             </div>
             <!-- パスワードセクション -->
             <div class="form-section mb-4">
