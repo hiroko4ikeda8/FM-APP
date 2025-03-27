@@ -4,6 +4,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
+// メール認証通知を表示するルート
+Route::get('/email/verify', function () {
+    return view('auth.verify-email'); // 認証待ち画面を表示
+})->middleware('auth')->name('verification.notice');
+
+// メール認証リンクを処理するルート
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill(); // メール認証を完了
+    return redirect('profile.show'); // プロフィール画面にリダイレクト
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// メール認証リンクを再送信するルート
+Route::post('/email/verification-notification', function (Illuminate\Http\Request $request) {
+    $request->user()->sendEmailVerificationNotification(); // 認証リンクを再送信
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 // 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 // 商品詳細画面へのルート

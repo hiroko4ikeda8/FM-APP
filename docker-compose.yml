@@ -10,11 +10,15 @@ services:
             - ./src:/var/www/
         depends_on:
             - php
+        networks:
+        - app-network #mailhogのために追加
 
     php:
         build: ./docker/php
         volumes:
             - ./src:/var/www/
+        networks:
+        - app-network #mailhogのために追加
 
     mysql:
         image: mysql:8.0.26
@@ -28,6 +32,8 @@ services:
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+        networks:
+        - app-network #mailhogのために追加
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -40,6 +46,8 @@ services:
             - mysql
         ports:
             - 8080:80
+        networks:
+        - app-network #mailhogのために追加
 
     mailhog:
         image: mailhog/mailhog
@@ -47,7 +55,7 @@ services:
             - "1025:1025"
             - "8025:8025"
         networks:
-            - app-network
+            - app-network #mailhogのために追加
 
 networks:
     app-network:
