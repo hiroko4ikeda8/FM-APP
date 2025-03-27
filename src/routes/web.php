@@ -28,7 +28,7 @@ Route::get('/email/verify', function () {
 // メール認証リンクを処理するルート
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill(); // メール認証を完了
-    return redirect('profile.show'); // プロフィール画面にリダイレクト
+    return redirect('profile.edit'); // プロフィール設定画面にリダイレクト
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // メール認証リンクを再送信するルート

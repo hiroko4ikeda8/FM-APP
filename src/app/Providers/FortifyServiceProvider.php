@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Laravel\Fortify\Contracts\RegisterResponse;
+use App\Http\Responses\CustomRegisterResponse;
 use App\Actions\Fortify\CreateNewUser;  // 必要な場合はこちらを追加
 use Illuminate\Cache\RateLimiting\Limit; // これでOK
 use Illuminate\Support\Facades\RateLimiter; // ファサードをインポート
@@ -11,6 +13,12 @@ use Illuminate\Http\Request;
 
 class FortifyServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        // カスタム RegisterResponse をバインド
+        $this->app->singleton(RegisterResponse::class, CustomRegisterResponse::class);
+    }
+    
     public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);

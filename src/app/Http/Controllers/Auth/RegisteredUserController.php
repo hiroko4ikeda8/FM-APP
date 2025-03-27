@@ -60,11 +60,13 @@ class RegisteredUserController extends Controller
             ]);
         }
 
+        // ユーザーを作成
         event(new Registered($user = $creator->create($request->all())));
 
+        // 作成したユーザーをログイン
         $this->guard->login($user);
 
-        // プロフィール画面にリダイレクト
-        return app(RegisterResponse::class)->toResponse($request)->setTargetUrl(route('profile.show'));
+        // Fortify の RegisterResponse を使用
+        return app(RegisterResponse::class);
     }
 }
