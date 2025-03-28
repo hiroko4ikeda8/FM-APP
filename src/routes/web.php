@@ -28,7 +28,7 @@ Route::get('/email/verify', function () {
 // メール認証リンクを処理するルート
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill(); // メール認証を完了
-    return redirect('profile.edit'); // プロフィール設定画面にリダイレクト
+    return redirect('/mypage/profile'); // プロフィール設定画面にリダイレクト
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // メール認証リンクを再送信するルート
@@ -36,6 +36,13 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
     $request->user()->sendEmailVerificationNotification(); // 認証リンクを再送信
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
+Route::get('mypage/profile', [ProfileController::class, 'editProfile'])
+    ->middleware(['auth', 'verified']) // 認証済みかつメール認証済みのユーザーのみアクセス可能
+    ->name('profile.edit');
+
+Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 // 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
@@ -51,6 +58,4 @@ Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddre
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 
-Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
-Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
-Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+

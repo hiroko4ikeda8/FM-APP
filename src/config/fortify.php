@@ -52,7 +52,7 @@ return [
     ],
     'redirects' => [
         'login' => '/',
-        'logout' => null,
+        'logout' => '/',
         'password-confirmation' => null,
         'register' => null,
         'email-verification' => null,

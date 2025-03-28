@@ -16,6 +16,12 @@ class ProfileController extends Controller
     //return view('auth.profile', compact('user'));
     //}
 
+    public function __construct()
+    {
+        // 認証済みユーザーのみアクセス可能
+        $this->middleware(['auth', 'verified']);
+    }
+    
     public function showProfile()
     {
         return view('auth.profile'); // ビュー 'resources/views/auth/profile.blade.php' を表示
@@ -25,6 +31,6 @@ class ProfileController extends Controller
     public function editProfile()
     {
         // プロフィール設定画面を返す
-        return view('profile.edit');
+        return view('auth.edit-profile');
     }
 }

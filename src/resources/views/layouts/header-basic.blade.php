@@ -36,7 +36,10 @@
 
             <!-- 右側：ナビゲーション -->
             <div class="d-flex align-items-center">
-                <a href="{{ route('logout') }}" class="me-3 text-decoration-none text-white" aria-label="ログアウト">ログアウト</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link text-decoration-none text-white me-3" aria-label="ログアウト">ログアウト</button>
+                </form>
                 <a href="{{ url('/mypage') }}" class="me-3 text-decoration-none text-white" aria-label="マイページ">マイページ</a>
                 <a href="{{ url('/sell') }}" class="btn btn-light text-dark" aria-label="出品">出品</a>
             </div>
