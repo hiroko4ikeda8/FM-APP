@@ -11,6 +11,11 @@ class Item extends Model
 
     protected $fillable = ['user_id', 'name', 'price', 'description', 'condition', 'image_path', 'category_id'];
 
+    // 購入済み商品かどうかを判定するアクセサ
+    public function getIsSoldAttribute()
+    {
+        return !is_null($this->sold_at);
+    }
 
     public function user()
     {

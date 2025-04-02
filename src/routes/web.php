@@ -59,3 +59,7 @@ Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 
 
+Route::get('/debug-login', function () {
+    auth()->loginUsingId(1); // ID=1 のユーザーでログイン
+    return redirect('/mypage'); // ログイン後にマイページへ
+});
