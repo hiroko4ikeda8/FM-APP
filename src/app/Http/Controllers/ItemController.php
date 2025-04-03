@@ -15,7 +15,12 @@ class ItemController extends Controller
         //dd($items);  // データの確認
         return view('items.index', compact('items'));
     }
-    
+
+    public function show($id)
+    {
+        $item = Item::findOrFail($id); // 商品が見つからない場合は 404 エラー
+        return view('items.show', compact('item'));
+    }
 
     // 商品出品フォームを表示
     public function create()

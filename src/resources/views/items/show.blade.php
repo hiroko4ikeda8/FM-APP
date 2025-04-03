@@ -13,7 +13,8 @@
             <!-- 左側: 商品画像 -->
             <div class="col-md-6">
                 <div class="product-image">
-                    <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像" class="item-image">
+                    <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品1画像" class="img-fluid">
+
                 </div>
             </div>
 

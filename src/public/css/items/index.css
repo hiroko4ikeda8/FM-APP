@@ -8,20 +8,25 @@
     /* 下のマージンを調整 */
 }
 
-/* レスポンシブ対応の画像 */
-.item img {
+.item {
     width: 100%;
-    height: auto;
+    /* カードの幅を揃える */
+    max-width: 220px;
+    /* 最大サイズ制限 */
+    height: 250px;
+    /* 各部屋の高さを固定 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 縦方向の中央配置 */
 }
 
-/* スクリーンサイズが大きい時に固定サイズに変更 */
-@media (min-width: 768px) {
-
-    .item img.fixed-size{
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-    }
+.item img {
+    width: 100%;
+    height: 180px;
+    /* 画像サイズ統一 */
+    object-fit: cover;
 }
 
 /* 通常状態のテキストカラー */

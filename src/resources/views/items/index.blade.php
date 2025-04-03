@@ -35,24 +35,30 @@
         <!-- おすすめ商品 -->
         <div id="recommend" class="tab-pane fade show active">
             <div class="item-gallery">
-                <div class="row">
-                    @foreach($items as $item)
-                    <div class="col-md-3">
-                        <div class="item text-center">
-                            <a href="{{ route('item.show', $item->id) }}">
-                                <img src="{{ asset('storage/images/' . $item->image_path) }}" alt="{{ $item->name }}" class="img-fluid fixed-size">
-                                <p>{{ $item->name }}</p>
-                                @if($item->is_sold)
-                                <span class="badge bg-danger">Sold</span>
-                                @endif
-                            </a>
-                        </div>
+                <div class="container">
+                    <div class="row">
+                        @foreach ($items as $index => $item)
+                        <!-- 1列4枚に制限 -->
+                        @if ($index % 4 === 0 && $index !== 0)
                     </div>
-                    @endforeach
+                    <div class="row">
+                        @endif
+
+                        <div class="col-md-3 d-flex align-items-center justify-content-center mb-4">
+                            <div class="item text-center">
+                                <a href="{{ route('item.show', $item->id) }}">
+                                    <img src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->name }}" class="img-fluid width="290" height="320">
+                                    <p>{{ $item->name }}</p>
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- マイリスト商品 -->
     <div id="mylist" class="tab-pane fade">
         <div class="item-gallery">
