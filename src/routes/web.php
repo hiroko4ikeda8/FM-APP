@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
@@ -46,13 +47,14 @@ Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name
 
 // 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
 // 商品詳細画面へのルート
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
-Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
-
 // 商品購入処理へのルート
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+// 商品コメント投稿処理
+Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
 
@@ -60,7 +62,17 @@ Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 
 
-Route::get('/debug-login', function () {
-    auth()->loginUsingId(1); // ID=1 のユーザーでログイン
-    return redirect('/mypage'); // ログイン後にマイページへ
+//Route::get('/debug-login', function () {
+//auth()->loginUsingId(3); // ID=1 のユーザーでログイン
+//return redirect('/mypage'); // ログイン後にマイページへ
+//});
+
+// routes/web.php
+Route::get('/debug-login/{id}', function ($id) {
+    $user = App\Models\User::find($id);
+    if ($user) {
+        auth()->login($user); // 指定されたIDでログイン
+        return redirect('/mypage'); // ログイン後にマイページへ
+    }
+    return 'User not found';
 });

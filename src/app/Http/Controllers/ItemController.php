@@ -19,53 +19,38 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        // 検索キーワード取得（クエリパラメータ or セッションで維持）
-        $query = $request->input('query', session('search_query'));
+        $keyword = $request->input('query', session('search_query')); // 検索ワード取得
+        $userId = auth()->id(); // ログインユーザーのID取得
 
-        // 検索された商品のIDを取得（検索結果があれば）
-        $searchResults = collect(); // デフォルトは空
-        if ($query) {
-            // 商品名に部分一致するIDを取得
-            $searchResults = Item::where('name', 'LIKE', "%{$query}%")->pluck('id');
-            session(['search_query' => $query]); // 検索ワードをセッションに保持
+        if ($keyword) {
+            // 検索ワードがある場合 → 検索結果のみ取得（ログインユーザーの商品も含める）
+            $items = Item::where('name', 'LIKE', "%{$keyword}%")->get();
+            $recommendItems = $items; // 検索結果をおすすめ商品として表示
+        } else {
+            // 検索ワードがない場合 → ログインユーザーの商品を除外し、おすすめ商品を10件取得
+            $items = Item::keywordSearch(null, $userId)
+                ->take(10)
+                ->get();
+            $recommendItems = $items; // おすすめ商品として表示
         }
 
-        // おすすめ商品一覧を取得（ただし、検索結果の商品は除外）
-        $recommendItems = Item::whereNotIn('id', $searchResults) // 検索結果を除外
-            ->take(10) // 最大10件
-            ->get();
-
-        // 検索結果に一致する商品を追加で取得（おすすめに表示する商品）
-        $searchedItems = Item::whereIn('id', $searchResults)
-            ->take(10) // 検索結果から10件だけ表示
-            ->get();
-
-        // 既に表示されているおすすめ商品と検索結果を統合する
-        $allItems = $recommendItems->merge($searchedItems);
-
         return view('items.index', [
-            'searchResults' => $searchedItems,
-            'recommendItems' => $allItems,
-            'query' => $query
+            'items' => $items,
+            'recommendItems' => $recommendItems, // Blade で使う変数を渡す
+            'query' => $keyword
         ]);
     }
 
-
-
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $items = Item::query()
-            ->where('name', 'like', '%' . $query . '%') // 商品名で部分一致検索
-            ->get();
-
-        return view('items.index', compact('items')); // 商品一覧ページに結果を渡す
-    }
-
+    // 商品詳細画面を表示
     public function show($id)
     {
-        $item = Item::findOrFail($id); // 商品が見つからない場合は 404 エラー
-        return view('items.show', compact('item'));
+        // 商品と、それに紐づくコメントとコメントしたユーザーを一度に取得
+        $item = Item::with('comments.user')->find($id);
+
+        /// 商品が見つからない場合にsoldを渡す
+        $isSold = !$item;
+
+        return view('items.show', compact('item', 'isSold'));
     }
 
     // 商品出品フォームを表示

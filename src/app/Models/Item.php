@@ -12,11 +12,18 @@ class Item extends Model
     protected $fillable = ['user_id', 'name', 'price', 'description', 'condition', 'image_path', 'category_id'];
 
     // 検索用スコープ
-    public function scopeKeywordSearch($query, $keyword)
+    public function scopeKeywordSearch($query, $keyword, $userId)
     {
         if (!empty($keyword)) {
             $query->where('name', 'like', '%' . $keyword . '%'); // 商品名で検索
         }
+
+        if ($userId) {
+            $query->where('user_id', '!=', $userId); // ログインユーザーの商品を除外
+        }
+
+        // 生成されるSQLクエリとバインドされたパラメータをデバッグ
+        //dd($query->toSql(), $query->getBindings());
     }
 
     // 購入済み商品かどうかを判定するアクセサ

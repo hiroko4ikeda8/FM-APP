@@ -1,7 +1,28 @@
-.item-image {
+.product-image img {
+    max-width: 100%;
+    /* 画像の最大幅を制限 */
+    max-height: 550px;
+    /* 最大高さを制限 */
+    object-fit: contain;
+    /* アスペクト比を保ちながら枠内に収める */
+}
+
+.sold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sold-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .product-name {
@@ -111,7 +132,17 @@
     border-color: #5f5f5f;
 }
 
-.form-group label {
+/* 既存の .form-group のスタイルを他のセクションにも適用 */
+.form-group label,
+.item-header label, .item-header p,
+.price-section label, .price-section p,
+.like-comment-section label,
+.purchase-section label,
+.description-section label,
+.color-section label, .color-section p,
+.condition-section label,
+.shipping-info-section label,
+.info-section label {
     font-weight: bold;
 }
 
