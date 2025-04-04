@@ -29,6 +29,28 @@
     object-fit: cover;
 }
 
+.item-name a {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.item-name {
+    font-weight: 900 !important;
+    /* 商品名を太文字に（さらに太く） */
+    color: black !important;
+    /* 文字色を黒に */
+    border-bottom: none !important;
+    /* テキスト下のボーダーを削除 */
+}
+
+.sold-label {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 /* 通常状態のテキストカラー */
 .main-content .nav-container .nav-link {
     color: #5F5F5F;

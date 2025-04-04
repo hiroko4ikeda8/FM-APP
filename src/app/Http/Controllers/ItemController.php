@@ -9,11 +9,22 @@ class ItemController extends Controller
 {
     public function index()
     {
-        // ログインユーザーを除外する処理は削除
-        $items = Item::get(); // 全商品を取得
+        $items = Item::where('user_id', '!=', auth()->id()) // ユーザーが出品した商品を除外
+            ->take(10) // 10件に制限
+            ->get();
 
         //dd($items);  // データの確認
         return view('items.index', compact('items'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $items = Item::query()
+            ->where('name', 'like', '%' . $query . '%') // 商品名で部分一致検索
+            ->get();
+
+        return view('items.index', compact('items')); // 商品一覧ページに結果を渡す
     }
 
     public function show($id)

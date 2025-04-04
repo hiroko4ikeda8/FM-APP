@@ -38,18 +38,17 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($items as $index => $item)
-                        <!-- 1列4枚に制限 -->
-                        @if ($index % 4 === 0 && $index !== 0)
-                    </div>
-                    <div class="row">
-                        @endif
-
-                        <div class="col-md-3 d-flex align-items-center justify-content-center mb-4">
+                        <!-- 商品を4列に並べる -->
+                        <div class="col-md-3 d-flex justify-content-center mb-4">
                             <div class="item text-center">
                                 <a href="{{ route('item.show', $item->id) }}">
-                                    <img src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->name }}" class="img-fluid width="290" height="320">
-                                    <p>{{ $item->name }}</p>
+                                    <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="img-fluid item-image">
+                                    <p class="item-name">{{ $item->name }}</p>
                                 </a>
+                                <!-- 購入済み商品の「Sold」表示 -->
+                                @if($item->purchased)
+                                <p class="sold-label">Sold</p>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -58,47 +57,30 @@
             </div>
         </div>
     </div>
-
     <!-- マイリスト商品 -->
     <div id="mylist" class="tab-pane fade">
+        @auth
         <div class="item-gallery">
             <div class="row">
+                @foreach(auth()->user()->likes as $item)
                 <div class="col-md-3">
                     <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="マイリスト商品1" class="img-fluid fixed-size">
-                            <p>腕時計</p>
+                        <a href="{{ route('item.show', $item->id) }}">
+                            <img src="{{ asset('storage/images/' . $item->image_path) }}" alt="{{ $item->name }}" class="img-fluid fixed-size">
+                            <p>{{ $item->name }}</p>
                         </a>
+                        @if($item->purchased)
+                        <p class="sold-label">Sold</p>
+                        @endif
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/iLoveIMG+d.jpg') }}" alt="マイリスト商品2" class="img-fluid fixed-size">
-                            <p>玉ねぎ</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Waitress+with+Coffee+Grinder.jpg') }}" alt="マイリスト商品3" class="img-fluid fixed-size">
-                            <p>コーヒーミル</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Living+Room+Laptop.jpg') }}" alt="マイリスト商品4" class="img-fluid fixed-size">
-                            <p>ノートパソコン</p>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
+        @else
+        <p>ログインしていないため、マイリストを表示できません。</p>
+        @endauth
     </div>
-</div>
 </div>
 
 @endsection

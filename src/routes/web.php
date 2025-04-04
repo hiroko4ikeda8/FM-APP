@@ -48,6 +48,7 @@ Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 // 商品詳細画面へのルート
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
 
 // 商品購入処理へのルート
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
