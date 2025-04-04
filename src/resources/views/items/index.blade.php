@@ -37,7 +37,7 @@
             <div class="item-gallery">
                 <div class="container">
                     <div class="row">
-                        @foreach ($items as $index => $item)
+                        @foreach ($recommendItems as $item)
                         <!-- 商品を4列に並べる -->
                         <div class="col-md-3 d-flex justify-content-center mb-4">
                             <div class="item text-center">

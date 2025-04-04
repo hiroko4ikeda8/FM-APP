@@ -11,6 +11,14 @@ class Item extends Model
 
     protected $fillable = ['user_id', 'name', 'price', 'description', 'condition', 'image_path', 'category_id'];
 
+    // 検索用スコープ
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%'); // 商品名で検索
+        }
+    }
+
     // 購入済み商品かどうかを判定するアクセサ
     public function getIsSoldAttribute()
     {

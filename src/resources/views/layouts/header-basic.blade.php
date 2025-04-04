@@ -24,9 +24,14 @@
 
             <!-- 中央：検索フォーム -->
             <div class="d-flex align-items-center justify-content-start mx-3" style="width: 500px;">
-                <form action="{{ route('items.search') }}" method="GET" style="width: 100%;">
+                <!--<form action="{{ route('items.search') }}" method="GET" style="width: 100%;">
                     <input type="text" name="query" class="form-control" style="width: 100%;" placeholder="なにをお探しですか？" value="{{ request()->query('query') }}">
+                </form> -->
+                <form action="{{ route('items.index') }}" method="GET" style="width: 100%;">
+                    <input type="text" name="query" class="form-control" placeholder="なにをお探しですか？"
+                        value="{{ request()->query('query') ?? session('search_query') }}">
                 </form>
+
             </div>
 
             <!-- CSSでプレースホルダーテキストを太字に設定 -->

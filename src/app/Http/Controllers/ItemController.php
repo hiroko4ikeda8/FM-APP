@@ -7,15 +7,50 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    public function index()
+    //public function index()
+    //{
+    //$items = Item::where('user_id', '!=', auth()->id()) // ユーザーが出品した商品を除外
+    //->take(10) // 10件に制限
+    //->get();
+
+    //dd($items);  // データの確認
+    //return view('items.index', compact('items'));
+    //}
+
+    public function index(Request $request)
     {
-        $items = Item::where('user_id', '!=', auth()->id()) // ユーザーが出品した商品を除外
-            ->take(10) // 10件に制限
+        // 検索キーワード取得（クエリパラメータ or セッションで維持）
+        $query = $request->input('query', session('search_query'));
+
+        // 検索された商品のIDを取得（検索結果があれば）
+        $searchResults = collect(); // デフォルトは空
+        if ($query) {
+            // 商品名に部分一致するIDを取得
+            $searchResults = Item::where('name', 'LIKE', "%{$query}%")->pluck('id');
+            session(['search_query' => $query]); // 検索ワードをセッションに保持
+        }
+
+        // おすすめ商品一覧を取得（ただし、検索結果の商品は除外）
+        $recommendItems = Item::whereNotIn('id', $searchResults) // 検索結果を除外
+            ->take(10) // 最大10件
             ->get();
 
-        //dd($items);  // データの確認
-        return view('items.index', compact('items'));
+        // 検索結果に一致する商品を追加で取得（おすすめに表示する商品）
+        $searchedItems = Item::whereIn('id', $searchResults)
+            ->take(10) // 検索結果から10件だけ表示
+            ->get();
+
+        // 既に表示されているおすすめ商品と検索結果を統合する
+        $allItems = $recommendItems->merge($searchedItems);
+
+        return view('items.index', [
+            'searchResults' => $searchedItems,
+            'recommendItems' => $allItems,
+            'query' => $query
+        ]);
     }
+
+
 
     public function search(Request $request)
     {

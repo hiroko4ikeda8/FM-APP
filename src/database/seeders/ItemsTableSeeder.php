@@ -9,7 +9,7 @@ class ItemsTableSeeder extends Seeder
 {
     public function run()
     {
-        $items = Item::factory(30)->create(); // 30件のデータを作成
+        $items = Item::factory(10)->create(); // 10件のデータを作成
 
         // 商品名とカテゴリのマッピング
         $categoryMapping = [
