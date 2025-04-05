@@ -30,15 +30,21 @@
                 <div class="item-details">
                     <!-- 商品名 -->
                     <div class="item-header mb-3">
-                        <p id="productName" class="product-name">商品名がここに入ります</p> <!-- 仮のデータ -->
+                        <p id="productName" class="product-name">{{ $item->name }}</p> <!-- 商品名を動的に表示 -->
                         <label for="brandName">ブランド名</label>
-                        <p id="brandName" class="brand-name">ブランド名がここに入ります</p> <!-- 仮のデータ -->
+                        <p id="brandName" class="brand-name">
+                            {{ $item->brand_name }}
+                        </p> <!-- ブランド名がnullの場合はフォールバック -->
                     </div>
                     <!-- 金額（税込み） -->
                     <div class="price-section mb-3">
-                        <label for="price">金額（税込み）</label>
-                        <p id="price">￥5000</p> <!-- 仮のデータ -->
+                        <p id="price">
+                            <span class="yen-symbol">￥</span>
+                            <span class="price-amount">{{ number_format($item->price) }}</span>
+                            <span class="tax-label">（税込）</span>
+                        </p>
                     </div>
+
                     <!-- いいね・コメントアイコンの追加 -->
                     <div class="like-comment-section mb-3 d-flex justify-content-between align-items-center">
                         <!-- 左側（いいねアイコンとコメントアイコン） -->

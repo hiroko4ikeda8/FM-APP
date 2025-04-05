@@ -26,7 +26,7 @@
 }
 
 .product-name {
-    font-size: 28px;
+    font-size: 36px;
     /* 大きめに設定 */
     font-weight: bold;
     /* 太字にする */
@@ -40,6 +40,28 @@
     font-weight: normal;
     color: #555;
     /* 少し淡い色にして目立ちすぎないように */
+}
+
+/* 円マーク */
+.yen-symbol {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 金額本体 */
+.price-amount {
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: -5px;
+        /* ← 左の余白をゼロにして、金額にくっつける！ */
+}
+
+/* （税込み） */
+.tax-label {
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: -10px;
+        /* ← 左の余白をゼロにして、金額にくっつける！ */
 }
 
 /* アイコンのサイズを30pxに統一 */
