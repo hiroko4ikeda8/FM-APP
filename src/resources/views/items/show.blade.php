@@ -83,13 +83,10 @@
                     <label for="color">カラー:</label>
                     <span id="color">シルバー</span> <!-- 仮のデータ -->
                 </div>
-                <!-- 商品の状態 -->
-                <div class="condition-section mb-3">
-                    <label for="condition">商品の状態</label>
-                    <p id="condition">新品</p> <!-- 仮のデータ -->
-                    <p class="text-muted">商品の状態は良好です。傷もありません。</p> <!-- 商品状態の説明 -->
-                </div>
+
                 <div class="shipping-info-section mb-3">
+                    <!-- 商品状態の説明 -->
+                    <p class="text-muted">商品の状態は良好です。傷もありません。</p>
                     <!-- 商品説明のボトム -->
                     <p class="shipping-info">購入後、即発送いたします。</p>
                 </div>
@@ -100,9 +97,19 @@
                 <!-- カテゴリー -->
                 <div class="info-section mb-3">
                     <label for="category">カテゴリー</label>
-                    <p id="category">ファッション</p> <!-- 仮のデータ -->
+                    <div id="category">
+                        @forelse ($item->categories as $category)
+                        <span class="category-badge">{{ $category->name }}</span>
+                        @empty
+                        <span>未設定</span>
+                        @endforelse
+                    </div>
                 </div>
-
+                <!-- 商品の状態 -->
+                <div class="condition-section mb-3">
+                    <label for="condition">商品の状態</label>
+                    <span id="condition">良好</span> <!-- 仮のデータ -->
+                </div>
                 <!-- コメント -->
                 <div class="comment-section-title">
                     <span>コメント({{ $item->comments->count() }})</span>

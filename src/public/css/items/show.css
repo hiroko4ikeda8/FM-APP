@@ -63,7 +63,6 @@
     margin-left: -10px;
         /* ← 左の余白をゼロにして、金額にくっつける！ */
 }
-
 /* アイコンのサイズを30pxに統一 */
 .icon {
     width: 34px;
@@ -106,6 +105,34 @@
     /* 下部の余白 */
     color: #5f5f5f;
     /* フォントの色（必要に応じて調整） */
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* ← ラベルとカテゴリの間に余白 */
+}
+
+#category {
+    display: flex;
+    flex-wrap: wrap;
+    /* 複数カテゴリが折り返せるように */
+    gap: 6px;
+    /* ← カテゴリバッジ同士の間隔 */
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ff5655;
+    background-color: #fff;
+    border: 2px solid #ff5655;
+    border-radius: 20px;
+    /* ← 丸みをつけて楕円形に */
 }
 
 .shipping-info {

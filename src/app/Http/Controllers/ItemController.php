@@ -45,7 +45,7 @@ class ItemController extends Controller
     public function show($id)
     {
         // 商品と、それに紐づくコメントとコメントしたユーザーを一度に取得
-        $item = Item::with('comments.user')->find($id);
+        $item = Item::with('comments.user', 'categories')->find($id);
 
         /// 商品が見つからない場合にsoldを渡す
         $isSold = !$item;
