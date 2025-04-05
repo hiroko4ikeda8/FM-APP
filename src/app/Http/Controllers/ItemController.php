@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Item;
 
@@ -73,12 +74,31 @@ class ItemController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        // データベースへの保存（仮の処理）
-        // 実際には、モデルを使ってデータベースに保存することが多い
-        // ここでは一旦セッションにデータを保存して、表示確認用とします
+        // 商品画像の保存
+        if ($request->hasFile('productImage')) {
+            $imagePath = $request->file('productImage')->store('images', 'public');  // publicディスクに保存
+        }
+
+        // 商品データの保存
+        $item = new Item();
+        $item->name = $request->productName;
+        $item->brand = $request->brandName;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->image_path = $imagePath ?? null;  // 画像パスを保存（画像があれば）
+        $item->condition_id = $request->condition;  // 状態を紐づけ（もし状態が別テーブルにある場合）
+
+        // カテゴリを保存（リレーションがある場合）
+        $category = Category::find($request->category);
+        $item->categories()->attach($category);
+
+        // 商品をデータベースに保存
+        $item->save();
+
+        // セッションに成功メッセージ
         $request->session()->flash('success', '商品が正常に出品されました！');
 
-        return redirect()->route('item.create');  // 再度出品フォームへリダイレクト
+        return redirect()->route('item.create');  // 出品フォームにリダイレクト
     }
 }
 

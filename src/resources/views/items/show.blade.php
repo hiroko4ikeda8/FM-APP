@@ -78,17 +78,17 @@
                 <div class="section-title-details">
                     <span>商品説明</span>
                 </div>
-                <!-- カラー -->
+                <!--この部分はカラムが存在しないため仮表示とする-->
                 <div class="color-section mb-3">
                     <label for="color">カラー:</label>
-                    <span id="color">シルバー</span> <!-- 仮のデータ -->
                 </div>
 
+                <!-- 商品状態 -->
                 <div class="shipping-info-section mb-3">
                     <!-- 商品状態の説明 -->
-                    <p class="text-muted">商品の状態は良好です。傷もありません。</p>
+                    <p class="text-muted">{{ $item->description }}</p> <!-- 商品状態や説明が動的に表示される -->
                     <!-- 商品説明のボトム -->
-                    <p class="shipping-info">購入後、即発送いたします。</p>
+                    <p class="shipping-info">{{ $item->shipping_info }}</p> <!-- 発送情報が動的に表示される -->
                 </div>
                 <!-- 商品の情報 -->
                 <div class="section-title-details">
@@ -108,7 +108,7 @@
                 <!-- 商品の状態 -->
                 <div class="condition-section mb-3">
                     <label for="condition">商品の状態</label>
-                    <span id="condition">良好</span> <!-- 仮のデータ -->
+                    <span id="condition">{{ $item->condition }}</span> <!-- 動的データ -->
                 </div>
                 <!-- コメント -->
                 <div class="comment-section-title">
