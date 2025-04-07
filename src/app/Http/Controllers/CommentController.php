@@ -22,7 +22,12 @@ class CommentController extends Controller
         $comment->content = $request->comment;
         $comment->save();
 
-        // コメント送信後、商品詳細画面にリダイレクト
-        return redirect()->route('item.show', $item->id);
+        // JSON形式でレスポンス（Ajax用）
+        return response()->json(
+            [
+                'message' => 'コメントが追加されました',
+                'comment_count' => $item->comments()->count()
+            ]
+        );
     }
 }

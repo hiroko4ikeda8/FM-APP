@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +51,8 @@ Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
 // 商品詳細画面へのルート
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+Route::post('/item/{item}/like', [LikeController::class, 'toggleLike'])->name('like.toggle');
+
 // 商品購入処理へのルート
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');

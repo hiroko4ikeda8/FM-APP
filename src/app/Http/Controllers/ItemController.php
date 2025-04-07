@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Item;
@@ -50,8 +51,17 @@ class ItemController extends Controller
 
         /// 商品が見つからない場合にsoldを渡す
         $isSold = !$item;
+        // ログインしているユーザーがその商品にいいねしているかを確認
+        $userHasLiked = null;
+        if (auth()->check()) {
+            $userHasLiked = Like::where('user_id', auth()->id())->where('item_id', $id)->exists();
+        }
 
-        return view('items.show', compact('item', 'isSold'));
+        // いいねの合計数を取得
+        $likeCount = Like::where('item_id', $id)->count();
+
+        // ビューに渡すデータ
+        return view('items.show', compact('item', 'isSold', 'userHasLiked', 'likeCount'));
     }
 
     // 商品出品フォームを表示

@@ -47,107 +47,147 @@
 
                     <!-- いいね・コメントアイコンの追加 -->
                     <div class="like-comment-section mb-3 d-flex justify-content-between align-items-center">
-                        <!-- 左側（いいねアイコンとコメントアイコン） -->
                         <div class="d-flex justify-content-between">
-                            <!-- いいねボタンのセクション -->
+                            <!-- いいねボタン -->
                             <div class="d-flex flex-column align-items-center me-3">
-                                <button type="submit" class="btn icon-btn d-flex flex-column align-items-center">
-                                    <img src="{{ asset('images/星アイコン8.png') }}" alt="いいね" class="icon me-2">
-                                    <!-- いいね数字 -->
-                                    <span class="icon-number">2</span>
-                                </button>
+                                <form action="{{ route('like.toggle', $item->id) }}" method="POST">
+                                    @csrf
+                                    @if($userHasLiked)
+                                    <button type="submit" class="btn icon-btn d-flex flex-column align-items-center">
+                                        <img src="{{ asset('images/星アイコン8.png') }}" alt="いいね" class="icon me-2" style="filter: hue-rotate(180deg);"> <!-- 色変更 -->
+                                        <span class="icon-number">{{ $likeCount }}</span>
+                                    </button>
+                                    @else
+                                    <button type="submit" class="btn icon-btn d-flex flex-column align-items-center">
+                                        <img src="{{ asset('images/星アイコン8.png') }}" alt="いいね" class="icon me-2">
+                                        <span class="icon-number">{{ $likeCount }}</span>
+                                    </button>
+                                    @endif
+                                </form>
                             </div>
                             <!-- コメントアイコンのセクション -->
                             <div class="d-flex flex-column align-items-center">
                                 <img src="{{ asset('images/ふきだしのアイコン.png') }}" alt="コメント" class="icon me-2">
-                                <!-- コメント数字 -->
-                                <span class="icon-number">4</span>
+                                <span class="icon-number">{{ $item->comments->count() }}</span> <!-- コメント数 -->
                             </div>
                         </div>
-                        <!-- 右側（空白部分や他のコンテンツを追加する場所） -->
-                        <div class="d-flex">
-                            <!-- 右側のコンテンツ（必要に応じて追加） -->
+                    </div>
+                    <!-- 購入手続きボタン -->
+                    <div class="purchase-section mb-3">
+                        <a href="{{ route('purchase.show', $item->id) }}" class="btn btn-purchase w-100">購入手続きへ</a>
+                    </div>
+                    <!-- 商品説明 -->
+                    <div class="section-title-details">
+                        <span>商品説明</span>
+                    </div>
+                    <!--この部分はカラムが存在しないため仮表示とする-->
+                    <div class="color-section mb-3">
+                        <label for="color">カラー:</label>
+                    </div>
+
+                    <!-- 商品状態 -->
+                    <div class="shipping-info-section mb-3">
+                        <!-- 商品状態の説明 -->
+                        <p class="text-muted">{{ $item->description }}</p> <!-- 商品状態や説明が動的に表示される -->
+                        <!-- 商品説明のボトム -->
+                        <p class="shipping-info">{{ $item->shipping_info }}</p> <!-- 発送情報が動的に表示される -->
+                    </div>
+                    <!-- 商品の情報 -->
+                    <div class="section-title-details">
+                        <span>商品の情報</span>
+                    </div>
+                    <!-- カテゴリー -->
+                    <div class="info-section mb-3">
+                        <label for="category">カテゴリー</label>
+                        <div id="category">
+                            @forelse ($item->categories as $category)
+                            <span class="category-badge">{{ $category->name }}</span>
+                            @empty
+                            <span>未設定</span>
+                            @endforelse
                         </div>
                     </div>
-                </div>
-                <!-- 購入手続きボタン -->
-                <div class="purchase-section mb-3">
-                    <a href="{{ route('purchase.show', $item->id) }}" class="btn btn-purchase w-100">購入手続きへ</a>
-                </div>
-                <!-- 商品説明 -->
-                <div class="section-title-details">
-                    <span>商品説明</span>
-                </div>
-                <!--この部分はカラムが存在しないため仮表示とする-->
-                <div class="color-section mb-3">
-                    <label for="color">カラー:</label>
-                </div>
-
-                <!-- 商品状態 -->
-                <div class="shipping-info-section mb-3">
-                    <!-- 商品状態の説明 -->
-                    <p class="text-muted">{{ $item->description }}</p> <!-- 商品状態や説明が動的に表示される -->
-                    <!-- 商品説明のボトム -->
-                    <p class="shipping-info">{{ $item->shipping_info }}</p> <!-- 発送情報が動的に表示される -->
-                </div>
-                <!-- 商品の情報 -->
-                <div class="section-title-details">
-                    <span>商品の情報</span>
-                </div>
-                <!-- カテゴリー -->
-                <div class="info-section mb-3">
-                    <label for="category">カテゴリー</label>
-                    <div id="category">
-                        @forelse ($item->categories as $category)
-                        <span class="category-badge">{{ $category->name }}</span>
-                        @empty
-                        <span>未設定</span>
-                        @endforelse
+                    <!-- 商品の状態 -->
+                    <div class="condition-section mb-3">
+                        <label for="condition">商品の状態</label>
+                        <span id="condition">{{ $item->condition }}</span> <!-- 動的データ -->
                     </div>
-                </div>
-                <!-- 商品の状態 -->
-                <div class="condition-section mb-3">
-                    <label for="condition">商品の状態</label>
-                    <span id="condition">{{ $item->condition }}</span> <!-- 動的データ -->
-                </div>
-                <!-- コメント -->
-                <div class="comment-section-title">
-                    <span>コメント({{ $item->comments->count() }})</span>
-                </div>
-
-                <!-- admin画像の表示窓 -->
-                <div class="form-group mb-3">
-                    <div class="image-display-box">
-                        <img src="{{ asset('storage/images/三毛猫のアイコン.jpg') }}" alt="admin画像" id="profile-picture">
-                        <label for="imageDisplay">admin</label>
+                    <!-- コメント -->
+                    <div class="comment-section-title">
+                        <span>コメント({{ $item->comments->count() }})</span>
                     </div>
-                </div>
 
-                <!-- コメントが表示されるボックス -->
-                <div class="form-group mb-3">
-                    <div id="admin-commentBox" class="admin-commentBox">
-                        @foreach ($item->comments as $comment)
-                        <p>{{ $comment->user->name }}: {{ $comment->content }}</p>
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- コメント入力フォーム -->
-                <form action="{{ route('comment.store', $item->id) }}" method="POST">
-                    @csrf
+                    <!-- admin画像の表示窓 -->
                     <div class="form-group mb-3">
-                        <label for="commentBox">商品へのコメント</label>
-                        <textarea id="commentBox" name="comment" class="form-control" rows="3" required></textarea>
+                        <div class="image-display-box">
+                            <img src="{{ asset('storage/images/三毛猫のアイコン.jpg') }}" alt="admin画像" id="profile-picture">
+                            <label for="imageDisplay">admin</label>
+                        </div>
                     </div>
 
-                    <!-- コメント送信ボタン -->
+                    <!-- コメントが表示されるボックス -->
                     <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-comment-submit w-100">コメントを送信する</button>
+                        <div id="admin-commentBox" class="admin-commentBox">
+                            @foreach ($item->comments as $comment)
+                            <p>{{ $comment->user->name }}: {{ $comment->content }}</p>
+                            @endforeach
+                        </div>
                     </div>
-                </form>
+
+                    <!-- コメント入力フォーム -->
+                    <form action="{{ route('comment.store', $item->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="commentBox">商品へのコメント</label>
+                            <textarea id="commentBox" name="comment" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <!-- コメント送信ボタン -->
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-comment-submit w-100">コメントを送信する</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-
         </div>
     </div>
 </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const commentInput = document.querySelector('textarea[name="comment"]');
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const url = form.getAttribute('action');
+
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                    },
+                    body: formData,
+                });
+
+                const data = await res.json();
+
+                // コメント数のカウントを更新
+                document.querySelector('.comment-section-title span').textContent =
+                    `コメント(${data.comment_count})`;
+
+                form.reset();
+                commentInput.blur();
+
+            } catch (error) {
+                console.error('コメント送信に失敗しました', error);
+                alert('コメントの送信に失敗しました。もう一度お試しください。');
+            }
+        });
+    });
+</script>
