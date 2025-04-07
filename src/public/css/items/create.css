@@ -91,7 +91,7 @@ input[type="file"] {
 .category-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10px 15px;
     justify-content: flex-start;
 }
 
@@ -103,13 +103,15 @@ input[type="file"] {
     border: 1px solid #FF5555;
     border-radius: 50px;
     /* 楕円形 */
-    padding: 8px 20px;
+    padding: 4px 20px;
     font-size: 14px;
     cursor: pointer;
     text-align: center;
     display: inline-block;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease; /* ここで色の変化をスムーズに */
+    margin-bottom: 10px;
+        /* ボタン間の縦の間隔を追加 */
 }
 
 .category-btn:hover {
