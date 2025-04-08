@@ -16,7 +16,8 @@
             <div class="main-content">
                 <!-- 商品出品のコンテンツ -->
                 <h2 class="text-center mb-4">商品出品</h2>
-                <form>
+                <form method="POST" action="{{ route('items.store') }}">
+                    @csrf
                     <!-- 商品画像セクション -->
                     <section class="product-image mb-5">
                         <div class="form-group">
@@ -113,3 +114,25 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
+<script>
+    const selected = new Set();
+    const buttons = document.querySelectorAll('.category-btn');
+    const hiddenInput = document.getElementById('selectedCategories');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const value = this.textContent;
+
+            this.classList.toggle('selected');
+
+            if (selected.has(value)) {
+                selected.delete(value);
+            } else {
+                selected.add(value);
+            }
+
+            // hidden input の value を更新
+            hiddenInput.value = Array.from(selected).join(',');
+        });
+    });
+</script>
