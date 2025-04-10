@@ -64,19 +64,29 @@ class ItemController extends Controller
         return view('items.show', compact('item', 'isSold', 'userHasLiked', 'likeCount'));
     }
 
-    // 商品出品フォームを表示
+    // 商品出品フォームの表示
     public function create()
     {
-        return view('items.create');  // 商品出品画面のビューを返す
+        // カテゴリを取得（例：カテゴリ名とIDのリストを取得）
+        $categories = Category::all();
+
+        // ビューにカテゴリデータを渡す
+        return view('items.create', compact('categories'));
     }
 
     // 商品出品フォームのデータを保存
     public function store(Request $request)
     {
+        // JSで送られてきた "1,2,3" を配列に変換
+        $request->merge([
+            'categories' => explode(',', $request->input('categories'))
+        ]);
+
         // バリデーション
         $validated = $request->validate([
             'productImage' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'category' => 'required',
+            'categories' => 'required|array', // カテゴリが配列で送られる
+            'categories.*' => 'exists:categories,id', // 各カテゴリIDが存在するか確認
             'condition' => 'required',
             'productName' => 'required|string|max:255',
             'brandName' => 'nullable|string|max:255',
@@ -87,6 +97,9 @@ class ItemController extends Controller
         // 商品画像の保存
         if ($request->hasFile('productImage')) {
             $imagePath = $request->file('productImage')->store('images', 'public');  // publicディスクに保存
+        } else {
+            // 商品画像がない場合の処理（例えばデフォルト画像を設定するなど）
+            $imagePath = null;
         }
 
         // 商品データの保存
@@ -95,20 +108,22 @@ class ItemController extends Controller
         $item->brand = $request->brandName;
         $item->description = $request->description;
         $item->price = $request->price;
-        $item->image_path = $imagePath ?? null;  // 画像パスを保存（画像があれば）
+        $item->image_path = $imagePath;  // 画像パスを保存（画像があれば）
         $item->condition_id = $request->condition;  // 状態を紐づけ（もし状態が別テーブルにある場合）
+        $item->user_id = auth()->id(); // 忘れずに出品者を紐づけ
 
-        // カテゴリを保存（リレーションがある場合）
-        $category = Category::find($request->category);
-        $item->categories()->attach($category);
+        // 商品を保存
+        $item->save(); // ← 先に save() してから、attach() が必要！
 
-        // 商品をデータベースに保存
-        $item->save();
+        // 複数カテゴリを紐づける
+        $item->categories()->attach($validated['categories']);
+
 
         // セッションに成功メッセージ
         $request->session()->flash('success', '商品が正常に出品されました！');
 
-        return redirect()->route('item.create');  // 出品フォームにリダイレクト
+        // ItemController.php（store後のリダイレクト）
+        return redirect()->route('item.index', ['page' => 'mylist'])->with('success', '商品を出品しました');
     }
 }
 
