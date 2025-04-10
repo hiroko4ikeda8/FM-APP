@@ -70,8 +70,16 @@ class ItemController extends Controller
         // カテゴリを取得（例：カテゴリ名とIDのリストを取得）
         $categories = Category::all();
 
-        // ビューにカテゴリデータを渡す
-        return view('items.create', compact('categories'));
+        // 商品の状態を機械的な値（サーバー側のデータ）で定義
+        $conditions = [
+            'good' => '良好',
+            'almost_new' => '目立った傷や汚れなし',
+            'slightly_used' => 'やや傷や汚れあり',
+            'poor_condition' => '状態が悪い',
+        ];
+                
+        // ビューにカテゴリデータと商品状態データを渡す
+        return view('items.create', compact('categories', 'conditions'));
     }
 
     // 商品出品フォームのデータを保存

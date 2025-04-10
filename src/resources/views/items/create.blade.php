@@ -53,10 +53,9 @@
                             <label for="condition">商品の状態</label>
                             <select name="condition" class="form-select" id="condition">
                                 <option selected>選択してください</option>
-                                <option value="good">良好</option>
-                                <option value="almost_new">目立った傷や汚れなし</option>
-                                <option value="slightly_used">やや傷や汚れあり</option>
-                                <option value="poor_condition">状態が悪い</option>
+                                @foreach ($conditions as $value => $label)
+                                <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </section>
