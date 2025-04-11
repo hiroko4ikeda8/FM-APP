@@ -25,8 +25,12 @@ class PurchaseController extends Controller
 
     public function editAddress($item_id)
     {
-        // 必要に応じて、$item_id を使用してデータを取得する処理を追加します。
-        return view('purchases.address-edit', compact('item_id'));
+        // ユーザーの住所情報を取得
+        $userId = auth()->id(); // 現在ログインしているユーザーID
+        $shippingAddress = ShippingAddress::where('user_id', $userId)->first(); // ユーザーの住所情報を取得
+
+        // 必要に応じて、$item_id を使用してデータを取得する処理を追加します
+        return view('purchases.address-edit', compact('item_id', 'shippingAddress')); // $shippingAddress をビューに渡す
     }
 
     public function updateAddress(Request $request, $itemId)
