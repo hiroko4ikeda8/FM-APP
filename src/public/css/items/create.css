@@ -170,7 +170,7 @@ input[type="file"] {
 
 /* フォーカス時のスタイルを設定 */
 .form-select:focus {
-    background-color: #646464;
+    background-color: #777;
     /* フォーカス時の背景色 */
     color: #eaeaea;
     /* フォーカス時のテキスト色 */

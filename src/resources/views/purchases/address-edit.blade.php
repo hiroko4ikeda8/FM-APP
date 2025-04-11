@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <h2 class="text-center mb-4">住所の変更</h2>
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('purchase.updateAddress', ['item_id' => $item_id]) }}">
                 @csrf
                 <div class="form-section mb-4">
                     <label for="postcode" class="form-label">郵便番号</label>

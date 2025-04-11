@@ -60,6 +60,8 @@ Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('
 Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
+Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
+
 
 Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
 Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録

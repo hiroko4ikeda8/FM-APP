@@ -38,7 +38,7 @@ table {
 
 /* デフォルトの背景色を設定 */
 .form-select {
-    background-color: #fffbfb;
+    background-color: #fff;
     /* 任意の色に設定 */
     color: #636769;
     /* テキストの色 */
@@ -46,7 +46,7 @@ table {
 
 /* フォーカス時のスタイルを設定 */
 .form-select:focus {
-    background-color: #cccccc;
+    background-color: #777;
     /* フォーカス時の背景色 */
     color: #eaeaea;
     /* フォーカス時のテキスト色 */
