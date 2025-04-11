@@ -11,7 +11,7 @@ class PurchaseController extends Controller
     // 商品購入画面表示
     public function show($item_id)
     {
-        // 仮の商品データを返す（動的なデータは後で追加）
+        // 仮の商品データ（後ほどDBから取得に置き換え予定）
         $item = [
             'name' => '商品名',
             'brand' => 'ブランド名',
@@ -19,8 +19,11 @@ class PurchaseController extends Controller
             'image' => 'Armani+Mens+Clock.jpg',
         ];
 
-        // 商品情報をビューに渡して表示
-        return view('purchases.purchase', compact('item'));
+        // ログインユーザーの送付先住所を取得
+        $shippingAddress = ShippingAddress::where('user_id', auth()->id())->first();
+
+        // 商品情報と住所をビューに渡す
+        return view('purchases.purchase', compact('item', 'shippingAddress'));
     }
 
     public function editAddress($item_id)
