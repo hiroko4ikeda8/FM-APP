@@ -107,3 +107,16 @@ table {
     border-color: #ff5555;
     /* ボーダーの色も変更 */
 }
+
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url('/images/Polygon 1.png');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px auto;
+
+    padding-right: 2rem;
+}

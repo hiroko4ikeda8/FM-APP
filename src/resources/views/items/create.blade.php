@@ -51,8 +51,9 @@
                         <!-- 商品の状態 -->
                         <div class="form-group">
                             <label for="condition">商品の状態</label>
-                            <select name="condition" class="form-select" id="condition">
-                                <option selected>選択してください</option>
+                            <select class="form-select custom-select" id="condition"
+                                style="border: 1px solid #5f5f5f; font-size: 14px;">
+                                <option value="" selected hidden>選択してください</option>
                                 @foreach ($conditions as $value => $label)
                                 <option value="{{ $value }}">{{ $label }}</option>
                                 @endforeach

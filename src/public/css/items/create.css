@@ -160,6 +160,7 @@ input[type="file"] {
     /* ボーダーの色も変更 */
 }
 
+
 /* デフォルトの背景色を設定 */
 .form-select {
     background-color: #fff;
@@ -168,6 +169,17 @@ input[type="file"] {
     /* テキストの色 */
 }
 
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url('/images/Polygon 1.png');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px auto;
+    padding-right: 2rem;
+}
 /* フォーカス時のスタイルを設定 */
 .form-select:focus {
     background-color: #777;
@@ -178,3 +190,4 @@ input[type="file"] {
     outline: none;
     /* フォーカス時のアウトラインを非表示 */
 }
+

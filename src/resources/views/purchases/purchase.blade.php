@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="main-content p-4">
+<div class="main-content p-4 pt-5">
     <!-- 商品画像セクション -->
     <div class="row mb-4">
         <!-- 左側 2/3 -->
@@ -15,29 +15,32 @@
             <div class="row">
                 <!-- 左側 1/4 画像 -->
                 <div class="col-md-3">
-                    <div class="img-container">
-                        <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像">
+                    <div class="img-container" style="margin-bottom: 20px;">
+                        <img src="{{ asset($item->image_path) }}" alt="商品画像">
                     </div>
                 </div>
                 <!-- 左側 2/4 商品名と金額 -->
                 <div class="col-md-6">
-                    <h4>Armani Mens Clock</h4>
-                    <p>￥47,000</p>
+                    <h4 style="font-size: 30px;">{{ $item->name }}</h4>
+                    <p style="font-size: 30px;">
+                        <span style="font-weight: normal; font-size: 25px;">¥</span>
+                        <span class="fw-bold">{{ number_format($item->price) }}</span>
+                    </p>
                 </div>
             </div>
-            <hr style="width: 98%; border-top: 1px solid black;">
+            <hr style="width: 98%; border-top: 2px solid black;">
         </div>
         <!-- 右側 1/3 -->
         <div class="col-md-4">
             <!-- テーブル -->
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="border: 1px solid black;">
                 <tbody>
                     <tr>
                         <td>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="text-center w-50 pt-4 label-text">商品代金</div>
                                 <div class="text-center w-50 pt-4 price-value">
-                                    <span style="margin-right: 4px;">¥</span>47,000
+                                    <span style="margin-right: 4px;">¥</span>{{ number_format($item->price) }}
                                 </div>
                             </div>
                         </td>
@@ -65,14 +68,15 @@
                 <!-- 右側（1/2）：支払い方法選択 -->
                 <div class="row mt-4">
                     <div class="col-md-4 d-flex align-items-center" style="margin-left: 5%; margin-bottom: 35px;">
-                        <select class="form-select" id="paymentMethod">
-                            <option value="" selected disabled>選択してください</option>
+                        <select class="form-select custom-select" id="paymentMethod"
+                            style="border: 1px solid #5f5f5f; padding-top: 4px; padding-bottom: 4px; font-size: 14px;">
+                            <option value="" selected hidden>選択してください</option>
                             <option value="credit_card">コンビニ払い</option>
                             <option value="convenience_store">カード支払い</option>
                         </select>
                     </div>
                 </div>
-                <hr>
+                <hr style="border-top: 2px solid black;">
             </div>
             <!-- 右側1/3：購入ボタン -->
             <div class="col-md-4">
@@ -105,8 +109,19 @@
                         @endif
                     </div>
                 </div>
-                <hr>
+                <hr style="border-top: 2px solid black;">
             </div>
         </div>
     </div>
     @endsection
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentSelect = document.getElementById('paymentMethod');
+            const paymentDisplay = document.querySelector('.payment-method');
+
+            paymentSelect.addEventListener('change', function() {
+                const selectedOption = paymentSelect.options[paymentSelect.selectedIndex].text;
+                paymentDisplay.textContent = selectedOption;
+            });
+        });
+    </script>
