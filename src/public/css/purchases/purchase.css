@@ -31,6 +31,28 @@
     flex-direction: column;  /* 子要素を縦並びにする */
 }
 
+.label-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    /* ← bold よりちょい軽め */
+    font-size: 16px;
+    color: #000;
+}
+
+.price-value {
+    font-family: 'Inter', sans-serif;
+    color: #000;
+    font-size: 19px;
+    /* ← 金額用にちょっと大きめとか */
+}
+
+.payment-method {
+    font-family: 'Inter', sans-serif;
+    color: #000;
+    font-size: 19px;
+    /* ← 支払い方法用にちょっと小さめ */
+}
+
 table {
     flex-grow: 1;  /* テーブルが余ったスペースを埋める */
     width: 100%;   /* テーブルが親要素の幅に収まるように */
@@ -71,8 +93,8 @@ table {
     /* フォントサイズ */
     border-radius: 5px;
     /* 角を丸くする */
-    display: inline-block;
-    /* インライン要素として表示 */
+    display: block;  /* ここを変更 */
+    width: 100%;  /* これも追加 */
     text-decoration: none;
     /* リンクの下線を消す */
 }
