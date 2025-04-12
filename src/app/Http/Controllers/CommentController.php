@@ -12,6 +12,9 @@ class CommentController extends Controller
     {
         $request->validate([
             'comment' => 'required|max:255',
+        ], [
+            'comment.required' => 'コメントを入力してください',
+            'comment.max' => '255文字以内で入力してください',
         ]);
 
         $item = Item::findOrFail($item_id);

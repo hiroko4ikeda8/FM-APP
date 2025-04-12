@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Models\Purchase;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\ShippingAddress;
@@ -32,7 +33,7 @@ class PurchaseController extends Controller
         return view('purchases.address-edit', compact('item_id', 'shippingAddress')); // $shippingAddress をビューに渡す
     }
 
-    public function updateAddress(Request $request, $itemId)
+    public function updateAddress(AddressRequest $request, $itemId)
     {
         $userId = auth()->id();
 
