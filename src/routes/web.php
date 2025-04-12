@@ -58,6 +58,7 @@ Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('pu
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
 // 商品コメント投稿処理
 Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/purchase/confirm/{item}', [PurchaseController::class, 'confirm'])->name('purchase.confirm');
 
 Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
 Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');

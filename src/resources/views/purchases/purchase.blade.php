@@ -57,7 +57,7 @@
             </table>
         </div>
         <!-- 支払い方法セクション -->
-        <form method="POST" action="{{ route('purchase.confirm', ['item_id' => $item->id]) }}">
+        <form method="POST" action="{{ route('purchase.confirm', ['item' => $item->id]) }}">
             @csrf
             <div class="row mb-4">
                 <div class="col-md-8">
@@ -80,11 +80,11 @@
                     </div>
                     <hr style="border-top: 2px solid black;">
                 </div>
-            </div>
-            <!-- 右側1/3：購入ボタン -->
-            <div class="col-md-4">
-                <div class="d-flex justify-content-center align-items-center" style="height: 80%;">
-                    <button class="btn btn-purchase w-100" style="position: relative; left: 5%;">購入する</button>
+                <!-- 右側1/3：購入ボタン -->
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 80%;">
+                        <button class="btn btn-purchase w-100" sstyle="/* position: relative; left: 5%; */">購入する</button>
+                    </div>
                 </div>
             </div>
         </form>

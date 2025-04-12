@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Purchase;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\ShippingAddress;
 use App\Models\Item;
@@ -54,6 +55,23 @@ class PurchaseController extends Controller
         $validated = $request->validated();
 
         // $validated['payment_method'] などを使って処理を続行
+    }
+
+    public function confirm(Request $request, Item $item)
+    {
+        // 1. 購入者情報を保存（例：purchasesテーブルにinsert）
+
+        Purchase::create([
+            'user_id' => auth()->id(),
+            'item_id' => $item->id,
+            'payment_method' => $request->payment_method,
+        ]);
+
+        // 2. 該当商品を「sold」に変更
+        $item->status = 'sold'; // または sold_flg = true;
+        $item->save();
+
+        return redirect()->route('purchase.complete');
     }
 }
 

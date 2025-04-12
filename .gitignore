@@ -13,12 +13,13 @@ docker/mysql/data/*
 *.pem
 
 # Public assets (compiled CSS, JS)
-/public/css
+/public/css/*
+!/public/css/custom.css   # これは除外しない（自作のCSSファイル)
 /public/js
+!/public/js/custom.js   # 自作のJSファイルは除外しない
 /public/mix-manifest.json
 
 # Database and logs
-/docker/mysql/data/*
 /storage/logs/
 /storage/framework/cache/
 
@@ -31,5 +32,7 @@ docker/mysql/data/*
 Thumbs.db
 
 ER図＿開き方メモ.txt
+
+*.Zone.Identifier
 
 !.gitkeep
