@@ -27,7 +27,6 @@
                                 <img id="previewImage" src="" alt="プレビュー画像" style="max-height: 100%; display: none;">
                                 <label for="productImage" class="btn-secondary position-absolute">画像を選択する</label>
                                 <input type="file" name="image" id="productImage" accept="image/*" style="display: none;">
-
                             </div>
                         </div>
                     </section>
