@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest; // ProfileRequestをインポート
 use Illuminate\Http\Request;
 use App\Models\User; // Userモデルをインポート
 
@@ -27,10 +28,17 @@ class ProfileController extends Controller
         return view('auth.profile'); // ビュー 'resources/views/auth/profile.blade.php' を表示
     }
 
-    // プロフィール編集画面を表示
     public function editProfile()
     {
-        // プロフィール設定画面を返す
-        return view('auth.edit-profile');
+        $user = auth()->user(); // ログインユーザー取得
+        return view('auth.edit-profile', compact('user'));
+    }
+
+    public function updateProfile(ProfileRequest $request)
+    {
+        $user = auth()->user();
+        $user->update($request->validated());
+
+        return redirect()->route('item.index')->with('success', 'プロフィールを更新しました');
     }
 }

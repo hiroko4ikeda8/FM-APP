@@ -40,7 +40,7 @@ class PurchaseController extends Controller
         // 住所取得 or 新規作成
         $shippingAddress = ShippingAddress::firstOrNew(['user_id' => $userId]);
 
-        $shippingAddress->postal_code = $request->postcode;
+        $shippingAddress->postal_code = $request->postal_code;
         $shippingAddress->address = $request->address;
         $shippingAddress->building_name = $request->build;
         $shippingAddress->save();

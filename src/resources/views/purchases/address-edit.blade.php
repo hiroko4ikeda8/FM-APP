@@ -28,9 +28,9 @@
                     @enderror
                 </div>
                 <div class="form-section mb-4">
-                    <label for="build" class="form-label">建物名</label>
-                    <input type="text" name="build" value="{{ old('build', $shippingAddress->building_name ?? '') }}" class="form-control">
-                    @error('build')
+                    <label for="buildingName" class="form-label">建物名</label>
+                    <input type="text" name="buildingName" value="{{ old('build', $shippingAddress->building_name ?? '') }}" class="form-control">
+                    @error('buildingName')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
