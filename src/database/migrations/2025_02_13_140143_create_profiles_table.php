@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id(); // id カラム (bigint) PRIMARY KEY
             $table->bigInteger('user_id')->unsigned(); // user_id カラム (bigint)
-            $table->string('avatar')->nullable(); // avatar カラム (string) 画像のパスなど、nullable
+            $table->string('avatar_path')->nullable(); // avatar カラム (string) 画像のパスなど、nullable
             $table->string('name'); // name カラム (string) NOT NULL
             $table->string('postal_code', 8); // postal_code カラム (string(8)) NOT NULL
             $table->string('address'); // address カラム (string) NOT NULL
