@@ -36,12 +36,13 @@
 }
 
 /* アイコンのスタイル */
-#profile-picture {
+#avatar-preview {
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 20px;
+    background-color: #f0f0f0;
 }
 
 /* 画像選択ボタンのスタイル */
@@ -62,6 +63,7 @@
 .btn-secondary:hover {
     background: #FF5555;
     color: white;
+    border: 1px solid #FF5555;
 }
 
 /* 更新するボタンのスタイル */

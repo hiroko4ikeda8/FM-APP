@@ -26,10 +26,10 @@
                                 <!-- 左側：画像とボタン -->
                                 <div class="col-md-6 d-flex align-items-center justify-content-between">
                                     <div>
-                                        <img src="{{ asset('storage/images/' . ($user->avatar ?? 'default-icon.jpg')) }}" alt="アイコン" class="img-fluid" id="avatar-preview">
+                                        <img src="{{ asset('storage/images/' . ($user->avatar_path ?? 'default-icon.jpg')) }}" alt="" class="img-fluid" id="avatar-preview">
                                     </div>
                                     <div class="ms-3"> <!-- ボタンと画像の間に左側のマージンを追加 -->
-                                        <label for="avatar" class="btn btn-secondary fw-bold">画像を選択する</label>
+                                        <label for="avatar" class="btn btn-secondary shadow-none fw-bold">画像を選択する</label>
                                         <input type="file" class="form-control d-none" id="avatar" name="avatar">
                                     </div>
                                 </div>
@@ -96,12 +96,22 @@
 </div>
 @endsection
 <script>
-    document.getElementById('avatar').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            document.getElementById('avatar-preview').src = event.target.result;
-        };
-        reader.readAsDataURL(file);
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatarInput = document.getElementById('avatar');
+        if (avatarInput) {
+            avatarInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const preview = document.getElementById('avatar-preview');
+                        if (preview) {
+                            preview.src = event.target.result;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
     });
 </script>

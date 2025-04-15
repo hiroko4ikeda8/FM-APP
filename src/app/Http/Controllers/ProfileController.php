@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileRequest; // ProfileRequestをインポート
+use App\Http\Requests\EditProfileRequest; // EditProfileRequestをインポート
 use Illuminate\Http\Request;
 use App\Models\User; // Userモデルをインポート
 
@@ -34,10 +34,18 @@ class ProfileController extends Controller
         return view('auth.edit-profile', compact('user'));
     }
 
-    public function updateProfile(ProfileRequest $request)
+    public function update(EditProfileRequest $request)
     {
         $user = auth()->user();
-        $user->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('images', 'public');
+            $data['avatar_path'] = $avatarPath;
+        }
+
+        // プロフィール情報の更新
+        $user->profile->update($data);
 
         return redirect()->route('item.index')->with('success', 'プロフィールを更新しました');
     }
