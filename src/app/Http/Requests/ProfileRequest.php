@@ -35,7 +35,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'avatar.mimes' => 'プロフィール画像は.jpegまたは.png形式でアップロードしてください。',
+            'avatar_path.mimes' => 'プロフィール画像は.jpeg、.jpgまたは.png形式でアップロードしてください。',
             'username.required' => 'ユーザー名は必須項目です。',
             'postal_code.required' => '郵便番号は必須項目です。',
             'postal_code.regex' => '郵便番号はハイフン付きの8文字で入力してください（例：123-4567）',

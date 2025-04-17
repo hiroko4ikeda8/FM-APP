@@ -27,7 +27,7 @@
                                 <!-- 左側：画像とボタン -->
                                 <div class="col-md-6 d-flex align-items-center justify-content-between">
                                     <div>
-                                        <img src="{{ asset('storage/images/' . ($user->avatar_path ?? 'default-icon.jpg')) }}" alt="" class="img-fluid" id="avatar-preview">
+                                        <img src="{{ asset('storage/images/' . ($user->avatar_path ?? 'default-icon.jpg')) }}" alt="" id="avatar-preview">
                                     </div>
                                     <div class="ms-3"> <!-- ボタンと画像の間に左側のマージンを追加 -->
                                         <label for="avatar" class="btn btn-secondary shadow-none fw-bold">画像を選択する</label>
