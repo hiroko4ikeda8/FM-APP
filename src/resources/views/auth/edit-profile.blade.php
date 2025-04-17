@@ -20,7 +20,8 @@
                         </div>
                         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
+                            <input type="hidden" name="first" value="true">
                             <!-- アイコンの表示セクション -->
                             <div class="row mb-4">
                                 <!-- 左側：画像とボタン -->
@@ -30,7 +31,11 @@
                                     </div>
                                     <div class="ms-3"> <!-- ボタンと画像の間に左側のマージンを追加 -->
                                         <label for="avatar" class="btn btn-secondary shadow-none fw-bold">画像を選択する</label>
-                                        <input type="file" class="form-control d-none" id="avatar" name="avatar">
+                                        <input type="file" class="form-control d-none" id="avatar" name="avatar_path">
+                                        <!-- 画像エラー表示 -->
+                                        @error('avatar_path')
+                                        <div class="text-danger mb-4">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -39,10 +44,6 @@
                                     <!-- 他のフォームフィールドがここに配置されます -->
                                 </div>
                             </div>
-                            <!-- 画像エラー表示 -->
-                            @error('avatar')
-                            <div class="text-danger mb-4">{{ $message }}</div>
-                            @enderror
 
                             <!-- ユーザー名セクション -->
                             <div class="mb-4">
@@ -75,7 +76,7 @@
                             <div class="mb-4">
                                 <label for="buildingName" class="form-label fw-bold">建物名</label> <!-- 太字に変更 -->
                                 <input type="text" class="form-control" id="buildingName" name="building_name" value="{{ old('building_name', $user->building_name ?? '') }}">
-                                @error('buildingName')
+                                @error('building_name')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

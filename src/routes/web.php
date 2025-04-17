@@ -39,12 +39,12 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
-Route::get('mypage/profile', [ProfileController::class, 'editProfile'])
-    ->middleware(['auth', 'verified']) // 認証済みかつメール認証済みのユーザーのみアクセス可能
-    ->name('profile.edit');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
+    Route::patch('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+});
 
-Route::post('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 // 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
