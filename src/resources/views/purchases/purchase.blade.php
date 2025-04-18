@@ -75,6 +75,9 @@
                                 <option value="" selected hidden>選択してください</option>
                                 <option value="credit_card">コンビニ払い</option>
                                 <option value="convenience_store">カード支払い</option>
+                                @error('payment_method')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </select>
                         </div>
                     </div>
@@ -110,6 +113,9 @@
                     <p>{{ $shippingAddress->address }} {{ $shippingAddress->building_name }}</p>
                     <!-- hidden で住所IDを送信 -->
                     <input type="hidden" name="shipping_address_id" value="{{ $shippingAddress->id }}">
+                    @error('shipping_address_id')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     @else
                     <p>住所が登録されていません。</p>
                     @endif

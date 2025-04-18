@@ -135,11 +135,15 @@
                     </div>
 
                     <!-- コメント入力フォーム -->
-                    <form action="{{ route('comment.store', $item->id) }}" method="POST">
+                    <form id="comment-form" action="{{ route('comment.store', $item->id) }}" method="POST">
+
                         @csrf
                         <div class="form-group mb-3">
                             <label for="commentBox">商品へのコメント</label>
-                            <textarea id="commentBox" name="comment" class="form-control" rows="3" required></textarea>
+                            <textarea id="commentBox" name="comment" class="form-control" rows="3"></textarea>
+                            @error('comment')
+                            <div id="comment-error" class="text-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- コメント送信ボタン -->
@@ -156,14 +160,26 @@
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
+        const form = document.getElementById('comment-Form');
         const commentInput = document.querySelector('textarea[name="comment"]');
-        
+        const errorBox = document.getElementById('comment-error');
+
+        console.log('フォーム:', form); // デバッグ用
+
+        if (!form) {
+            console.error('フォームが見つかりません');
+            return;
+        }
+
         form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+            e.preventDefault(); // デフォルトのフォーム送信を防止
 
             const formData = new FormData(form);
             const url = form.getAttribute('action');
+
+            // デバッグ用ログを追加
+            console.log('送信先URL:', url);
+            console.log('送信データ:', Object.fromEntries(formData));
 
             try {
                 const res = await fetch(url, {
@@ -175,14 +191,29 @@
                     body: formData,
                 });
 
-                const data = await res.json();
+                if (res.status === 422) {
+                    const errorData = await res.json();
+                    const errorMsg = errorData.errors.comment?.[0] || 'バリデーションエラー';
+                    errorBox.textContent = errorMsg;
+                    return;
+                }
 
-                // コメント数のカウントを更新
+                const data = await res.json();
+                console.log(data);
+
+                // コメント数の更新
                 document.querySelector('.comment-section-title span').textContent =
                     `コメント(${data.comment_count})`;
 
+                // コメントを画面に追加
+                const commentList = document.querySelector('#admin-commentBox');
+                const newComment = document.createElement('p');
+                newComment.textContent = `${data.user_name}: ${data.comment}`;
+                commentList.appendChild(newComment);
+
                 form.reset();
                 commentInput.blur();
+                errorBox.textContent = ''; // エラーメッセージをクリア
 
             } catch (error) {
                 console.error('コメント送信に失敗しました', error);

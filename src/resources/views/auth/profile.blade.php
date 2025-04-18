@@ -29,84 +29,58 @@
     <nav class="nav-container border-bottom pb-2 mb-3">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active fw-bold" id="buyTab" data-bs-toggle="pill" href="#buy">出品した商品</a>
+                <a class="nav-link active fw-bold" id="sellTab" data-bs-toggle="pill" href="#sell">出品した商品</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold" id="sellTab" data-bs-toggle="pill" href="#sell">購入した商品</a>
+                <a class="nav-link fw-bold" id="buyTab" data-bs-toggle="pill" href="#buy">購入した商品</a>
             </li>
         </ul>
     </nav>
+    <!-- プロフィール画面のタブ部分 -->
     <div class="tab-content mt-3">
-        <div id="buy" class="tab-pane fade show active">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品1画像" class="img-fluid fixed-size">
-                            <p>腕時計</p>
-                        </a>
+        <div id="buy" class="tab-pane fade {{ request('tab') === 'buy' ? 'show active' : '' }}">
+            <div class="item-gallery">
+                @if ($purchasedItems->isNotEmpty())
+                <div class="row">
+                    @foreach ($purchasedItems as $item)
+                    <div class="col-md-3 d-flex justify-content-center mb-4">
+                        <div class="item text-center">
+                            <a href="{{ route('item.show', $item->id) }}">
+                                <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="img-fluid profile-item-image">
+                                <p class="item-name">{{ $item->name }}</p>
+                            </a>
+                            <p class="sold-label">Purchased</p>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Tumbler+souvenir.jpg') }}" alt="商品2画像" class="img-fluid fixed-size">
-                            <p>タンブラー</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Music+Mic+4632231.jpg') }}" alt="商品3画像" class="img-fluid fixed-size">
-                            <p>マイク</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Purse+fashion+pocket.jpg') }}" alt="商品4画像" class="img-fluid fixed-size">
-                            <p>ショルダーバッグ</p>
-                        </a>
-                    </div>
-                </div>
+                @else
+                <p class="text-center">購入履歴はありません。</p>
+                @endif
             </div>
         </div>
-        <div id="sell" class="tab-pane fade">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="出品商品1" class="img-fluid fixed-size">
-                            <p>腕時計</p>
-                        </a>
+
+        <div id="sell" class="tab-pane fade {{ request('tab') === 'sell' ? 'show active' : '' }}">
+            <div class="item-gallery">
+                @if ($soldItems->isNotEmpty())
+                <div class="row">
+                    @foreach ($soldItems as $item)
+                    <div class="col-md-3 d-flex justify-content-center mb-4">
+                        <div class="item text-center">
+                            <a href="{{ route('item.show', $item->id) }}">
+                                <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="img-fluid profile-item-image">
+                                <p class="item-name">{{ $item->name }}</p>
+                            </a>
+                            @if($item->purchased)
+                            <p class="sold-label">Sold</p>
+                            @endif
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/iLoveIMG+d.jpg') }}" alt="出品商品2" class="img-fluid fixed-size">
-                            <p>玉ねぎ</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Waitress+with+Coffee+Grinder.jpg') }}" alt="出品商品3" class="img-fluid fixed-size">
-                            <p>コーヒーミル</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item text-center">
-                        <a href="#">
-                            <img src="{{ asset('storage/images/Living+Room+Laptop.jpg') }}" alt="出品商品4" class="img-fluid fixed-size">
-                            <p>ノートパソコン</p>
-                        </a>
-                    </div>
-                </div>
+                @else
+                <p class="text-center">出品履歴はありません。</p>
+                @endif
             </div>
         </div>
     </div>

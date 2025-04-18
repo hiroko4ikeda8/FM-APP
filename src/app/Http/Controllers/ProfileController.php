@@ -13,10 +13,18 @@ class ProfileController extends Controller
         // 認証済みユーザーのみアクセス可能
         $this->middleware(['auth', 'verified']);
     }
-    
+
     public function showProfile()
     {
-        return view('auth.profile'); // ビュー 'resources/views/auth/profile.blade.php' を表示
+        $user = auth()->user();
+
+        // 購入した商品を取得
+        $purchasedItems = $user->purchases;
+
+        // 出品した商品を取得
+        $soldItems = $user->items;
+
+        return view('auth.profile', compact('user', 'purchasedItems', 'soldItems'));
     }
 
     public function editProfile()

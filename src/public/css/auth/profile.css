@@ -52,7 +52,7 @@
 }
 
 /* レスポンシブ対応の画像 */
-.item img {
+.profile-item-image {
     width: 100%;
     height: auto;
 }

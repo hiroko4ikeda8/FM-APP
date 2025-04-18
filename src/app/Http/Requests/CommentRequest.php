@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PurchaseRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,19 +21,18 @@ class PurchaseRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'payment_method' => 'required',
-            'shipping_address_id' => 'required|exists:shipping_addresses,id',
+            'comment' => ['required', 'string', 'max:255'],
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
-            'payment_method' => '支払い方法は必須です。',
-            'shipping_address_id.required' => '配送先住所は必須です。',
+            'comment.required' => 'コメントを入力してください。',
+            'comment.max' => '255文字以内で入力してください。',
         ];
     }
 }

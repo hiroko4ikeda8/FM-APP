@@ -16,7 +16,7 @@
                 <div class="form-section mb-4">
                     <label for="postcode" class="form-label">郵便番号</label>
                     <input type="text" name="postcode" value="{{ old('postcode', $shippingAddress->postal_code ?? '') }}" class="form-control">
-                    @error('postcode')
+                    @error('postal_code')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

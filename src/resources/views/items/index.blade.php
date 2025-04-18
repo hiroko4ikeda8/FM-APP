@@ -35,35 +35,25 @@
         <!-- おすすめ商品 -->
         <div id="recommend" class="tab-pane fade show active">
             <div class="item-gallery">
-                <div class="container">
-                    <div class="row">
-                        @if ($recommendItems->isNotEmpty())
-                            <div id="recommend" class="tab-pane fade show active">
-                                <div class="item-gallery">
-                                    <div class="container">
-                                        <div class="row">
-                                            @foreach ($recommendItems as $item)
-                                            <div class="col-md-3 d-flex justify-content-center mb-4">
-                                                <div class="item text-center">
-                                                    <a href="{{ route('item.show', $item->id) }}">
-                                                        <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="img-fluid item-image">
-                                                        <p class="item-name">{{ $item->name }}</p>
-                                                    </a>
-                                                    @if($item->purchased)
-                                                    <p class="sold-label">Sold</p>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                        <p class="text-center">該当商品が見つかりませんでした。</p>
-                        @endif
+                @if ($recommendItems->isNotEmpty())
+                <div class="row">
+                    @foreach ($recommendItems as $item)
+                    <div class="col-md-3 d-flex justify-content-center mb-4">
+                        <div class="item text-center">
+                            <a href="{{ route('item.show', $item->id) }}">
+                                <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="img-fluid item-image">
+                                <p>{{ $item->name }}</p>
+                            </a>
+                            @if($item->purchased)
+                            <p class="sold-label">Sold</p>
+                            @endif
+                        </div>
                     </div>
+                    @endforeach
                 </div>
+                @else
+                <p class="text-center">該当商品が見つかりませんでした。</p>
+                @endif
             </div>
         </div>
     </div>
