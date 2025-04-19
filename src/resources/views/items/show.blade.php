@@ -160,7 +160,7 @@
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('comment-Form');
+        const form = document.getElementById('comment-form');
         const commentInput = document.querySelector('textarea[name="comment"]');
         const errorBox = document.getElementById('comment-error');
 
@@ -181,11 +181,15 @@
             console.log('送信先URL:', url);
             console.log('送信データ:', Object.fromEntries(formData));
 
+            // CSRFトークンをmetaタグから取得
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+
             try {
                 const res = await fetch(url, {
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'X-CSRF-TOKEN': csrfToken,
                         'Accept': 'application/json',
                     },
                     body: formData,
