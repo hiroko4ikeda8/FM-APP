@@ -30,22 +30,22 @@
             <!-- ユーザー名セクション -->
             <div class="form-section mb-4">
                 <label for="name" class="form-label">ユーザー名</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" >
             </div>
             <!-- メールアドレスセクション -->
             <div class="form-section mb-4">
                 <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
             </div>
             <!-- パスワードセクション -->
             <div class="form-section mb-4">
                 <label for="password" class="form-label">パスワード</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="password" >
             </div>
             <!-- 確認用パスワードセクション -->
             <div class="form-section mb-4">
                 <label for="password_confirmation" class="form-label">確認用パスワード</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" >
             </div>
             <!-- 登録ボタンセクション -->
             <div class="form-section mb-4 mt-5">

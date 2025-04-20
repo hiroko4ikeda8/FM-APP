@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class RegisteredUserController extends Controller
      * @return \Laravel\Fortify\Contracts\RegisterResponse
      */
     public function store(
-        Request $request,
+        RegisterRequest $request, // ← RequestではなくRegisterRequestを指定！
         CreatesNewUsers $creator
     ): RegisterResponse {
         if (config('fortify.lowercase_usernames')) {
@@ -60,13 +61,12 @@ class RegisteredUserController extends Controller
             ]);
         }
 
-        // ユーザーを作成
-        event(new Registered($user = $creator->create($request->all())));
+        event(new Registered(
+            $user = $creator->create($request->validated()) // validated()を使ってバリデーション済みデータだけ渡す！
+        ));
 
-        // 作成したユーザーをログイン
         $this->guard->login($user);
 
-        // Fortify の RegisterResponse を使用
         return app(RegisterResponse::class);
     }
 }
