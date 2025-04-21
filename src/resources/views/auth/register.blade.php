@@ -17,35 +17,37 @@
         <!-- 会員登録フォームセクション -->
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <!-- エラーメッセージの表示 -->
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
             <!-- ユーザー名セクション -->
             <div class="form-section mb-4">
                 <label for="name" class="form-label">ユーザー名</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" >
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                @error('name')
+                <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
             <!-- メールアドレスセクション -->
             <div class="form-section mb-4">
                 <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                @error('email')
+                <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
             <!-- パスワードセクション -->
             <div class="form-section mb-4">
                 <label for="password" class="form-label">パスワード</label>
-                <input type="password" class="form-control" id="password" name="password" >
+                <input type="password" class="form-control" id="password" name="password">
+                @error('password')
+                <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
             <!-- 確認用パスワードセクション -->
             <div class="form-section mb-4">
                 <label for="password_confirmation" class="form-label">確認用パスワード</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" >
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                @error('password_confirmation')
+                <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
             <!-- 登録ボタンセクション -->
             <div class="form-section mb-4 mt-5">
