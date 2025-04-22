@@ -44,7 +44,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 160px;
     /* 高さを指定 */
     position: relative;
     /* 子要素を中央に配置するために相対位置 */
@@ -64,7 +64,7 @@ input[type="file"] {
 
 /* 商品画像を選択するボタンの背景色を変更 */
 .btn-secondary {
-    background: white;
+    background: rgba(255, 255, 255, 0.5);
     /* 背景色を白に */
     color: #FF5555;
     /* テキストカラーを #FF5555 に */
@@ -90,7 +90,7 @@ input[type="file"] {
 
 /* ホバー時のスタイル */
 .btn-secondary:hover {
-    background: #FF5555;
+    background: rgba(255, 85, 85, 0.5);
     /* ホバー時に背景色をテキスト色に */
     color: white;
     /* ホバー時にテキストを白に */
@@ -190,4 +190,5 @@ input[type="file"] {
     outline: none;
     /* フォーカス時のアウトラインを非表示 */
 }
+
 

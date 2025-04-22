@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Http\Responses\CustomRegisterResponse;
 use App\Actions\Fortify\CreateNewUser;  // 必要な場合はこちらを追加
@@ -25,6 +27,20 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
             return view('auth.register');
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->email)->first();
+
+            if (
+                $user &&
+                Hash::check($request->password, $user->password) &&
+                $user->hasVerifiedEmail() // 👈 メール認証済みチェック
+            ) {
+                return $user;
+            }
+
+            return null;
         });
 
         Fortify::loginView(function () {

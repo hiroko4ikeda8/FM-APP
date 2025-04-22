@@ -41,6 +41,8 @@ class ExhibitionRequest extends FormRequest
 
             // 商品価格：入力必須、数値、0以上
             'price' => ['required', 'numeric', 'min:0'],
+
+            'brand' => ['nullable', 'string', 'max:255'],
         ];
     }
 
@@ -58,6 +60,8 @@ class ExhibitionRequest extends FormRequest
             'price.required' => '販売価格は必須です。',
             'price.numeric' => '販売価格は数値で入力してください。',
             'price.min' => '販売価格は0円以上で入力してください。',
+            'brand.string' => 'ブランド名は文字列で入力してください。',
+            'brand.max' => 'ブランド名は255文字以内で入力してください。',
         ];
     }
 }

@@ -28,6 +28,9 @@
                                 <label for="productImage" class="btn-secondary position-absolute">画像を選択する</label>
                                 <input type="file" name="image" id="productImage" accept="image/*" style="display: none;">
                             </div>
+                            @error('image')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </section>
                     <!-- 商品の詳細セクション -->
@@ -37,15 +40,19 @@
                         </div>
                         <hr>
                         <!-- カテゴリー -->
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-4">
                             <label for="category">カテゴリー</label>
                             <div class="category-buttons">
                                 @foreach($categories as $category) <!-- カテゴリーデータを動的に表示 -->
                                 <button type="button" class="category-btn" data-id="{{ $category->id }}">{{ $category->name }}</button>
                                 @endforeach
+
+                                @error('categories')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <!-- hidden input をここに設置（Blade内に仕込む）-->
-                            <input type="hidden" name="categories[]" id="selectedCategories">
+                            <input type="hidden" name="categories" id="selectedCategories">
                         </div>
                         <!-- 商品の状態 -->
                         <div class="form-group">
@@ -58,6 +65,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error('condition')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </section>
                     <!-- 商品名と説明セクション -->
                     <section class="product-info mb-5">
@@ -66,20 +76,29 @@
                         </div>
                         <hr>
                         <!-- 商品名 -->
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="productName">商品名</label>
                             <input type="text" name="name" class="form-control" id="productName">
                         </div>
+                        @error('name')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                         <!-- ブランド名 -->
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="brandName">ブランド名</label>
                             <input type="text" name="brand" class="form-control" id="brandName">
                         </div>
+                        @error('brand')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                         <!-- 商品説明 -->
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="description">商品の説明</label>
                             <textarea name="description" class="form-control" id="description"></textarea>
                         </div>
+                        @error('description')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                         <!-- 販売価格 -->
                         <div class="form-group">
                             <label for="price">販売価格</label>
@@ -87,6 +106,9 @@
                                 <span class="input-group-text">￥</span>
                                 <input type="text" name="price" class="form-control" id="price">
                             </div>
+                            @error('price')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </section>
 

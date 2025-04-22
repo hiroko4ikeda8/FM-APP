@@ -5,8 +5,10 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,26 +28,26 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/email/verify', function () {
     return view('auth.verify-email'); // 認証待ち画面を表示
 })->middleware('auth')->name('verification.notice');
-
 // メール認証リンクを処理するルート
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill(); // メール認証を完了
     return redirect('/mypage/profile'); // プロフィール設定画面にリダイレクト
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
 // メール認証リンクを再送信するルート
-Route::post('/email/verification-notification', function (Illuminate\Http\Request $request) {
+Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification(); // 認証リンクを再送信
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// ログイン、ログアウトのルート
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
     Route::patch('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 });
-
-
 // 商品一覧画面へのルート
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');

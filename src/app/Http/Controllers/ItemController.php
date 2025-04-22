@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Like;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -83,54 +84,37 @@ class ItemController extends Controller
     }
 
     // 商品出品フォームのデータを保存
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
-        // JSで送られてきた "1,2,3" を配列に変換
+        // 文字列で送られてきたカテゴリ（例: "1,2,3"）を配列に変換
         $request->merge([
             'categories' => explode(',', $request->input('categories'))
         ]);
 
-        // バリデーション
-        $validated = $request->validate([
-            'productImage' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'categories' => 'required|array', // カテゴリが配列で送られる
-            'categories.*' => 'exists:categories,id', // 各カテゴリIDが存在するか確認
-            'condition' => 'required',
-            'productName' => 'required|string|max:255',
-            'brandName' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-        ]);
+        $validated = $request->validated();
 
         // 商品画像の保存
+        $imagePath = null;
         if ($request->hasFile('productImage')) {
-            $imagePath = $request->file('productImage')->store('images', 'public');  // publicディスクに保存
-        } else {
-            // 商品画像がない場合の処理（例えばデフォルト画像を設定するなど）
-            $imagePath = null;
+            $imagePath = $request->file('productImage')->store('images', 'public');
         }
 
         // 商品データの保存
         $item = new Item();
-        $item->name = $request->productName;
-        $item->brand = $request->brandName;
-        $item->description = $request->description;
-        $item->price = $request->price;
-        $item->image_path = $imagePath;  // 画像パスを保存（画像があれば）
-        $item->condition_id = $request->condition;  // 状態を紐づけ（もし状態が別テーブルにある場合）
-        $item->user_id = auth()->id(); // 忘れずに出品者を紐づけ
+        $item->name = $validated['productName'];
+        $item->brand = $validated['brandName'] ?? null;
+        $item->description = $validated['description'] ?? null;
+        $item->price = $validated['price'];
+        $item->image_path = $imagePath;
+        $item->condition_id = $validated['condition'];
+        $item->user_id = auth()->id();
+        $item->save();
 
-        // 商品を保存
-        $item->save(); // ← 先に save() してから、attach() が必要！
-
-        // 複数カテゴリを紐づける
+        // カテゴリとの紐づけ
         $item->categories()->attach($validated['categories']);
 
-
-        // セッションに成功メッセージ
+        // 成功メッセージとリダイレクト
         $request->session()->flash('success', '商品が正常に出品されました！');
-
-        // ItemController.php（store後のリダイレクト）
         return redirect()->route('item.index', ['page' => 'mylist'])->with('success', '商品を出品しました');
     }
 }
