@@ -10,7 +10,7 @@
             <p>登録していただいたメールアドレスに認証メールを送付しました。<br>メール認証を完了してください。</p>
 
             <div class="my-4">
-                <a href="{{ URL::signedRoute('verification.verify', ['id' => auth()->user()->id, 'hash' => sha1(auth()->user()->email)]) }}" class="btn btn-secondary text-dark">認証はこちらから</a>
+                <a href="http://localhost:8025" class="btn btn-secondary text-dark">認証はこちらから</a>
             </div>
 
             <div>

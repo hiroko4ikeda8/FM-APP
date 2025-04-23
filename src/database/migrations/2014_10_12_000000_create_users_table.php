@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
+    /**    <?php
+    dd($profile);
      *
      * @return void
      */

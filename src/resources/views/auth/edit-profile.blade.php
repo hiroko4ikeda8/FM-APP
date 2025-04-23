@@ -18,9 +18,11 @@
                         <div class="section-title mb-4 text-center">
                             <h2 class="fw-bold">プロフィール設定</h2> <!-- 太字に変更 -->
                         </div>
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ $user->profile ? route('profile.update') : route('profile.store') }}" enctype="multipart/form-data">
                             @csrf
-                            @method('PATCH')
+                            @if($user->profile)
+                            @method('PUT')
+                            @endif
                             <input type="hidden" name="first" value="true">
                             <!-- アイコンの表示セクション -->
                             <div class="row mb-4">

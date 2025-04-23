@@ -31,7 +31,7 @@ Route::get('/email/verify', function () {
 // メール認証リンクを処理するルート
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill(); // メール認証を完了
-    return redirect('/mypage/profile'); // プロフィール設定画面にリダイレクト
+    return redirect()->intended('/mypage/profile')->with('verified', true); // 認証後のリダイレクト先
 })->middleware(['auth', 'signed'])->name('verification.verify');
 // メール認証リンクを再送信するルート
 Route::post('/email/verification-notification', function (Request $request) {
@@ -44,42 +44,28 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
+    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile.store');
+    Route::put('/mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::get('/mypage', [ProfileController::class, 'showProfile'])->name('profile.show');
-    Route::get('mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
-    Route::patch('mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    // 商品一覧画面へのルート
+    Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
+    // 商品詳細画面へのルート
+    Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+    Route::post('/item/{item}/like', [LikeController::class, 'toggleLike'])->name('like.toggle');
+    // 商品購入処理へのルート
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+    // 商品コメント投稿処理
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/purchase/confirm/{item}', [PurchaseController::class, 'confirm'])->name('purchase.confirm');
+
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
+
+    Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
+    Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 });
-// 商品一覧画面へのルート
-Route::get('/', [ItemController::class, 'index'])->name('items.index');
-Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
-// 商品詳細画面へのルート
-Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
-Route::post('/item/{item}/like', [LikeController::class, 'toggleLike'])->name('like.toggle');
-
-// 商品購入処理へのルート
-Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
-Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
-// 商品コメント投稿処理
-Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
-Route::post('/purchase/confirm/{item}', [PurchaseController::class, 'confirm'])->name('purchase.confirm');
-
-Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
-Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
-
-Route::get('/sell', [ItemController::class, 'create'])->name('sell.create'); // 出品画面表示
-Route::post('/sell', [ItemController::class, 'store'])->name('sell.store'); // 出品データ登録
 
 
-//Route::get('/debug-login', function () {
-//auth()->loginUsingId(3); // ID=1 のユーザーでログイン
-//return redirect('/mypage'); // ログイン後にマイページへ
-//});
-
-// routes/web.php
-Route::get('/debug-login/{id}', function ($id) {
-    $user = App\Models\User::find($id);
-    if ($user) {
-        auth()->login($user); // 指定されたIDでログイン
-        return redirect('/mypage'); // ログイン後にマイページへ
-    }
-    return 'User not found';
-});

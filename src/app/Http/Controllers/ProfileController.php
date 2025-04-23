@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ProfileRequest; // ProfileRequestをインポート
 use Illuminate\Http\Request;
 use App\Models\User; // Userモデルをインポート
@@ -33,25 +35,39 @@ class ProfileController extends Controller
         return view('auth.edit-profile', compact('user'));
     }
 
+    public function storeProfile(ProfileRequest $request)
+    {
+        $user = auth()->user();
+        $data = $request->validated();
+
+        if ($request->hasFile('avatar_path')) {
+            $avatarPath = $request->file('avatar_path')->store('images', 'public');
+            $data['avatar_path'] = $avatarPath;
+        }
+
+        $user->profile()->create($data);
+
+        return redirect()->route('item.index')->with('success', 'プロフィール登録が完了しました');
+    }
+
     public function updateProfile(ProfileRequest $request)
     {
         $user = auth()->user();
         $data = $request->validated();
 
-    if ($request->hasFile('avatar_path')) {
-        $avatarPath = $request->file('avatar_path')->store('images', 'public');
-        $data['avatar_path'] = $avatarPath;
-    }
+        if ($request->hasFile('avatar_path')) {
+            $avatarPath = $request->file('avatar_path')->store('images', 'public');
+            $data['avatar_path'] = $avatarPath;
+        }
 
-    $user->profile->update($data);
+        if ($user->profile) {
+            $user->profile->update($data);
+        } else {
+            return redirect()->route('profile.edit')->with('error', 'プロフィールが存在しません');
+        }
 
-    // 🧠 リクエストに "first" が来ていたら初回とみなす
-    if ($request->has('first') && $request->input('first') === 'true') {
-        return redirect()->route('item.index')->with('success', 'プロフィール登録が完了しました');
-    } else {
-        dd('通常のリダイレクト');
         return redirect()->route('profile.show')->with('success', 'プロフィールを更新しました');
     }
 }
 
-}
+
